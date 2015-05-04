@@ -35,10 +35,10 @@ Ext.define('AffiliatedHospital.controller.Main', {
         },
         refs: {
 
-            nav: 'main',
-            homepage:'main #homepage',
-            installpatientbtn:'main #installpatient',
-            installdoctorbtn:'main #installdoctor'
+            nav: '#main',
+            homepage:'#main #homepage',
+            installpatientbtn:'#main #installpatient',
+            installdoctorbtn:'#main #installdoctor'
         }
     },
 
@@ -111,12 +111,13 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
     },
     initRender: function () {
+        alert(1);
        /* var me=this;
         testobj=me.getNav();
         setTimeout(function(){
             me.getNav().setActiveItem(0);
         },500);*/
-        setTimeout(function(){
+       /* setTimeout(function(){
             Ext.get('homepage').setHeight((Ext.getBody().getHeight()-50));
 
         },500);
@@ -126,7 +127,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
             Ext.get('homepage').setHeight((Ext.getBody().getHeight()-50));
 
         }, this, {buffer: 50 });
-
+*/
 
 
     }
