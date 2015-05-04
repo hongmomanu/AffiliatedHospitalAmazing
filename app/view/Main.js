@@ -22,41 +22,43 @@ Ext.define('AffiliatedHospital.view.Main', {
             items : [
 
 
-                    Ext.create('Ext.ux.TabMenuButton', {
-                        //text: 'All',
-                        docked: 'right',
-                        align : 'right',
-                        xtype: 'button',
-                        iconCls: 'settings',
-                        menuItems: [{
-                            text: 'All',
-                            iconCls: 'view_grid',
-                            scope: this,
-                            handler: function () {
-                                //this.container.setActiveItem(0);
-                                //this.getContactsStore().clearFilter();
-                            }
-                        }, {
-                            text: 'Favorites',
-                            iconCls: 'done',
-                            scope: this,
-                            handler: function () {
-                                //Ext.getCmp('searchBar').hide();
-                                //this.container.setActiveItem(0);
-                                //this.getContactsStore().clearFilter();
-                                //this.getContactsStore().filter('firstName', 'robert');
-                            }
-                        }, {
-                            text: 'BBM',
-                            iconCls: 'bbm',
-                            scope: this,
-                            handler: function () {
-                                //Ext.getCmp('searchBar').hide();
-                                //this.container.setActiveItem(1);
-                                //this.getBBMStore().clearFilter();
-                            }
-                        }]
-                    })
+                Ext.create('Ext.ux.ActionOverFlowMenuButton', {
+                    docked: 'right',
+                    align:'right',
+                    iconCls:'settings',
+                    menuItems: [{
+                        text: 'All',
+
+                        iconCls: 'view_grid',
+                        scope: this,
+                        handler: function() {
+                           /* Ext.Viewport.hideMenu('right');
+                            this.container.setActiveItem(0);
+                            this.getContactsStore().clearFilter();*/
+                        }
+                    }, {
+                        text: 'Favorites',
+                        iconCls: 'done',
+                        scope: this,
+                        handler: function() {
+                           /* Ext.Viewport.hideMenu('right');
+                            Ext.getCmp('searchBar').hide();
+                            this.container.setActiveItem(0);
+                            this.getContactsStore().clearFilter();
+                            this.getContactsStore().filter('firstName', 'robert');*/
+                        }
+                    }, {
+                        text: 'BBM',
+                        iconCls: 'bbm',
+                        scope: this,
+                        handler: function() {
+                            /*Ext.Viewport.hideMenu('right');
+                            Ext.getCmp('searchBar').hide();
+                            this.container.setActiveItem(1);
+                            this.getBBMStore().clearFilter();*/
+                        }
+                    }]
+                })
 
 
 
