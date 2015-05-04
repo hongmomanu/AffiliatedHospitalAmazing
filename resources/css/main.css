@@ -5,6 +5,11 @@ html,body {
 body.x-desktop {
 	font-size:100%;
 }
+
+.separator {
+	font-size: 30px;
+	color: #6EA6CC;
+}
 /*#endregion*/
 /*#region 引导页 */
 .guide .x-innerhtml {

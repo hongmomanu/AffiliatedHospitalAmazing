@@ -26,10 +26,12 @@ Ext.define('AffiliatedHospital.view.Main', {
                     docked: 'right',
                     align:'right',
                     iconCls:'settings',
-                    menuItems: [{
-                        text: 'All',
+                    border:0,
+                    menuItems: [
 
-                        iconCls: 'view_grid',
+                        {
+                        text: '用户登录',
+                        iconCls: 'user',
                         scope: this,
                         handler: function() {
                            /* Ext.Viewport.hideMenu('right');
@@ -37,8 +39,14 @@ Ext.define('AffiliatedHospital.view.Main', {
                             this.getContactsStore().clearFilter();*/
                         }
                     }, {
-                        text: 'Favorites',
-                        iconCls: 'done',
+                            xtype: 'button',
+                            ui: 'plain',
+                            text: '______',
+                            disabled: true,
+                            cls: 'separator'
+                        },{
+                        text: '返回首页',
+                        iconCls: 'home',
                         scope: this,
                         handler: function() {
                            /* Ext.Viewport.hideMenu('right');
@@ -48,8 +56,28 @@ Ext.define('AffiliatedHospital.view.Main', {
                             this.getContactsStore().filter('firstName', 'robert');*/
                         }
                     }, {
-                        text: 'BBM',
-                        iconCls: 'bbm',
+                        text: '意见反馈',
+                        iconCls: 'reply',
+                        scope: this,
+                        handler: function() {
+                            /*Ext.Viewport.hideMenu('right');
+                            Ext.getCmp('searchBar').hide();
+                            this.container.setActiveItem(1);
+                            this.getBBMStore().clearFilter();*/
+                        }
+                    }, {
+                        text: '软件分享',
+                        iconCls: 'organize',
+                        scope: this,
+                        handler: function() {
+                            /*Ext.Viewport.hideMenu('right');
+                            Ext.getCmp('searchBar').hide();
+                            this.container.setActiveItem(1);
+                            this.getBBMStore().clearFilter();*/
+                        }
+                    }, {
+                        text: '关于我们',
+                        iconCls: 'info',
                         scope: this,
                         handler: function() {
                             /*Ext.Viewport.hideMenu('right');
