@@ -10,6 +10,7 @@ Ext.define('AffiliatedHospital.view.Main', {
     config: {
 
         fullscreen: true,
+        centered: true,
         scrollable: 'vertical',
 
         height: '100%',
@@ -34,8 +35,8 @@ Ext.define('AffiliatedHospital.view.Main', {
                         iconCls: 'user',
                         scope: this,
                         handler: function() {
-                           /* Ext.Viewport.hideMenu('right');
-                            this.container.setActiveItem(0);
+                           Ext.Viewport.hideMenu('right');
+                            /* this.container.setActiveItem(0);
                             this.getContactsStore().clearFilter();*/
                         }
                     }, {
@@ -49,8 +50,8 @@ Ext.define('AffiliatedHospital.view.Main', {
                         iconCls: 'home',
                         scope: this,
                         handler: function() {
-                           /* Ext.Viewport.hideMenu('right');
-                            Ext.getCmp('searchBar').hide();
+                           Ext.Viewport.hideMenu('right');
+                            /* Ext.getCmp('searchBar').hide();
                             this.container.setActiveItem(0);
                             this.getContactsStore().clearFilter();
                             this.getContactsStore().filter('firstName', 'robert');*/
@@ -60,8 +61,8 @@ Ext.define('AffiliatedHospital.view.Main', {
                         iconCls: 'reply',
                         scope: this,
                         handler: function() {
-                            /*Ext.Viewport.hideMenu('right');
-                            Ext.getCmp('searchBar').hide();
+                            Ext.Viewport.hideMenu('right');
+                            /* Ext.getCmp('searchBar').hide();
                             this.container.setActiveItem(1);
                             this.getBBMStore().clearFilter();*/
                         }
@@ -70,8 +71,8 @@ Ext.define('AffiliatedHospital.view.Main', {
                         iconCls: 'organize',
                         scope: this,
                         handler: function() {
-                            /*Ext.Viewport.hideMenu('right');
-                            Ext.getCmp('searchBar').hide();
+                            Ext.Viewport.hideMenu('right');
+                            /*Ext.getCmp('searchBar').hide();
                             this.container.setActiveItem(1);
                             this.getBBMStore().clearFilter();*/
                         }
@@ -80,8 +81,8 @@ Ext.define('AffiliatedHospital.view.Main', {
                         iconCls: 'info',
                         scope: this,
                         handler: function() {
-                            /*Ext.Viewport.hideMenu('right');
-                            Ext.getCmp('searchBar').hide();
+                            Ext.Viewport.hideMenu('right');
+                            /*Ext.getCmp('searchBar').hide();
                             this.container.setActiveItem(1);
                             this.getBBMStore().clearFilter();*/
                         }
@@ -93,19 +94,21 @@ Ext.define('AffiliatedHospital.view.Main', {
 
             ]
         },
-        centered: true,
+
 
         items: [
 
             {
 
-               xtype:'panel',
+               //xtype:'panel',
                 //xtype:'tabpanel',
                 //tabBarPosition: 'bottom',
                 title:'绍兴文理学院附属医院',
                 //activeItem:0,
                 //fullscreen : true,
                 layout : 'fit',
+                xtype: 'container',
+                //layout: 'fit',
 
                 items: [
 
@@ -119,29 +122,37 @@ Ext.define('AffiliatedHospital.view.Main', {
                         //styleHtmlContent: true,
                         layout: 'vbox',
 
+
                         items: [
                             {
                                 xtype : 'container',
-                                title : '宝宝喂养记',
+                                title : '',
                                 flex:1,
+                                height: '100%',
+                                width: '100%',
+                                centered: true,
                                 style : 'background-color: #FFFFFF',
                                 layout : {
                                     type : 'vbox',
                                     align : 'center'
                                 },
                                 items : [{
-                                    xtype : 'panel',
-                                    margin : '40 0 0 0',
+                                    xtype : 'container',
+                                    flex:1,
+                                    margin : '-20 0 0 0',
                                     cls : 'home',
                                     defaults : {
-                                        xtype : 'panel',
+                                        xtype : 'container',
                                         layout : 'hbox'
                                     },
+                                    centered: true,
+
                                     items : [{
                                         defaults : {
-                                            xtype : 'panel',
+                                            xtype : 'container',
                                             margin : 10
                                         },
+
                                         items : [{
                                             xtype : 'button',
                                             text : '门诊预约',
@@ -166,7 +177,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                         }]
                                     }, {
                                         defaults : {
-                                            xtype : 'panel',
+                                            xtype : 'container',
                                             margin : 10
                                         },
                                         items : [{
@@ -195,7 +206,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                         }]
                                     }, {
                                         defaults : {
-                                            xtype : 'panel',
+                                            xtype : 'container',
                                             margin : 10
                                         },
                                         items : [{
