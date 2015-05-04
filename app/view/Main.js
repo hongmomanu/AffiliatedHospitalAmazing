@@ -17,19 +17,68 @@ Ext.define('AffiliatedHospital.view.Main', {
         style: {
             'padding': '1px'
         },
+        navigationBar : {
+            docked : 'top',
+            items : [
+
+
+                    Ext.create('Ext.ux.TabMenuButton', {
+                        //text: 'All',
+                        docked: 'right',
+                        align : 'right',
+                        xtype: 'button',
+                        iconCls: 'settings',
+                        menuItems: [{
+                            text: 'All',
+                            iconCls: 'view_grid',
+                            scope: this,
+                            handler: function () {
+                                //this.container.setActiveItem(0);
+                                //this.getContactsStore().clearFilter();
+                            }
+                        }, {
+                            text: 'Favorites',
+                            iconCls: 'done',
+                            scope: this,
+                            handler: function () {
+                                //Ext.getCmp('searchBar').hide();
+                                //this.container.setActiveItem(0);
+                                //this.getContactsStore().clearFilter();
+                                //this.getContactsStore().filter('firstName', 'robert');
+                            }
+                        }, {
+                            text: 'BBM',
+                            iconCls: 'bbm',
+                            scope: this,
+                            handler: function () {
+                                //Ext.getCmp('searchBar').hide();
+                                //this.container.setActiveItem(1);
+                                //this.getBBMStore().clearFilter();
+                            }
+                        }]
+                    })
+
+
+
+
+            ]
+        },
         centered: true,
 
         items: [
+
             {
 
-                xtype:'tabpanel',
-                tabBarPosition: 'bottom',
+               xtype:'panel',
+                //xtype:'tabpanel',
+                //tabBarPosition: 'bottom',
                 title:'绍兴文理学院附属医院',
                 //activeItem:0,
-                fullscreen : true,
-                //layout : 'fit',
+                //fullscreen : true,
+                layout : 'fit',
 
                 items: [
+
                     {
                         title: '首页',
                         iconCls: 'home',
@@ -101,14 +150,14 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             xtype : 'button',
                                             text : '诊疗记录',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/shuijiao.png",
+                                            icon : "resources/icons/weinai.png",
                                             handler : function() {
                                             }
                                         }, {
                                             xtype : 'button',
                                             text : '健康百科',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/about.png",
+                                            icon : "resources/icons/niaobu.png",
                                             handler : function() {
                                                 // Ext.Msg.alert('关于', '欢迎使用《宝宝喂养记》<br/>版本：1.0-20140620<br/>作者：LionGIS@163.com', Ext.emptyFn);
                                             }
@@ -123,7 +172,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             xtype : 'button',
                                             text : '医院导航',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/tiwen.png",
+                                            icon : "resources/icons/muru.png",
                                             handler : function() {
                                             }
                                         }, {

@@ -9,6 +9,16 @@ Ext.define('AffiliatedHospital.controller.Main', {
         views: [
             'Main'
         ],
+        requires: [
+            'Ext.ux.ActionOverFlowMenuButton',
+            'Ext.ux.ContextMenu',
+            'Ext.ux.TabMenuButton',
+            'Ext.ux.ApplicationMenu',
+            'Ext.Toolbar',
+            'Ext.field.Text',
+            'Ext.data.Store',
+            'Ext.dataview.List'
+        ],
         models: [
 
 
@@ -35,10 +45,10 @@ Ext.define('AffiliatedHospital.controller.Main', {
         },
         refs: {
 
-            nav: '#main',
-            homepage:'#main #homepage',
-            installpatientbtn:'#main #installpatient',
-            installdoctorbtn:'#main #installdoctor'
+            nav: 'main',
+            homepage:'main #homepage',
+            installpatientbtn:'main #installpatient',
+            installdoctorbtn:'main #installdoctor'
         }
     },
 
@@ -111,7 +121,10 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
     },
     initRender: function () {
-        alert(1);
+
+        // Application menu
+
+        //alert(1);
        /* var me=this;
         testobj=me.getNav();
         setTimeout(function(){
