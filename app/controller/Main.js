@@ -49,6 +49,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
         refs: {
 
             nav: 'main',
+            reservenavsplitbtn:'main #reservenav',
             homepage:'main #homepage',
             outpatientreservebtn:'main #outpatientreserve',
             installpatientbtn:'main #installpatient',
@@ -58,10 +59,19 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
     outpatientReserveShow:function(){
 
-        if(!this.reserveView)this.reserveView=Ext.create('AffiliatedHospital.view.outpatient.ReserveView');
+        if(!this.reserveView){
+            //this.reserveView=Ext.create('AffiliatedHospital.view.outpatient.ReserveView');
+            this.reserveView=Ext.create('AffiliatedHospital.view.outpatient.ReserveViewLayout');
+            /*this.getNav().push(this.reserveView);
+            var btn=this.getReservenavsplitbtn();
+            btn.fireEvent('release');*/
+            //console.log(this.getrReservenavsplitbtn())
+        }
+        this.getNav().push(this.reserveView);
+
 
         //var reserveView=Ext.create('AffiliatedHospital.view.outpatient.ReserveView');
-        this.getNav().push(this.reserveView);
+
     },
 
     installdoctor:function(){

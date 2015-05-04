@@ -12,6 +12,10 @@ Ext.define('AffiliatedHospital.view.outpatient.ReserveView', {
     config: {
         fullscreen: true,
 
+        closeOnSelect:false,
+
+        title:'手记预约',
+
         /**
          *  Any component within the container with an 'x-toolbar' class
          *  will be draggable.  To disable draggin all together, set this
@@ -56,7 +60,7 @@ Ext.define('AffiliatedHospital.view.outpatient.ReserveView', {
          */
         list: {
             maxDrag: 400,
-            width: 200,
+            width: 100,
             items: [{
                 xtype: 'toolbar',
                 docked: 'top',
@@ -64,7 +68,7 @@ Ext.define('AffiliatedHospital.view.outpatient.ReserveView', {
                 title: {
                     title: 'Navigation',
                     centered: false,
-                    width: 200,
+                    width: 100,
                     left: 0
                 }
 
@@ -107,7 +111,9 @@ Ext.define('AffiliatedHospital.view.outpatient.ReserveView', {
             xtype: 'container'
         },
 
-        items: [{
+        items: [
+
+            {
             title: 'Item 1',
             //group: 'Group 1',
 
@@ -214,6 +220,8 @@ Ext.define('AffiliatedHospital.view.outpatient.ReserveView', {
             slideButton: {
                 iconMask: false,
                 iconCls: null,
+                hidden:true,
+                itemId:'reservenav',
                 text: 'menu'
             },
 

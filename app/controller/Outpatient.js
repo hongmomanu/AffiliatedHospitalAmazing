@@ -7,7 +7,8 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
     config: {
         views: [
-            'outpatient.ReserveView'
+            'outpatient.ReserveView',
+            'outpatient.ReserveViewLayout'
         ],
         requires: [
             'Ext.ux.slidenavigation.View'
@@ -33,6 +34,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         refs: {
 
             nav: 'main'
+
 
         }
     },
