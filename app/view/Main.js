@@ -11,6 +11,7 @@ Ext.define('AffiliatedHospital.view.Main', {
 
         fullscreen: true,
         centered: true,
+        autoDestroy: false,
         scrollable: 'vertical',
 
         height: '100%',

@@ -57,9 +57,11 @@ Ext.define('AffiliatedHospital.controller.Main', {
     },
 
     outpatientReserveShow:function(){
-        this.getNav().push({
-            title:'Hello jack'
-        });
+
+        if(!this.reserveView)this.reserveView=Ext.create('AffiliatedHospital.view.outpatient.ReserveView');
+
+        //var reserveView=Ext.create('AffiliatedHospital.view.outpatient.ReserveView');
+        this.getNav().push(this.reserveView);
     },
 
     installdoctor:function(){

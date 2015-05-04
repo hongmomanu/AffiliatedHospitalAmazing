@@ -19,7 +19,8 @@ Ext.application({
 
     controllers: [
 
-        'Main'
+        'Main',
+        'Outpatient'
 
     ],
 
