@@ -158,8 +158,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '门诊预约',
                                             iconAlign : 'top',
                                             icon : "resources/icons/muru.png",
-                                            handler : function() {
-                                            }
+                                            itemId:'outpatientreserve'
                                         }, {
                                             xtype : 'button',
                                             text : '预约签到',

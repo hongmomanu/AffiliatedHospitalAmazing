@@ -40,6 +40,9 @@ Ext.define('AffiliatedHospital.controller.Main', {
             },
             installdoctorbtn:{
                 tap:'installdoctor'
+            },
+            outpatientreservebtn:{
+                tap:'outpatientReserveShow'
             }
 
         },
@@ -47,9 +50,16 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
             nav: 'main',
             homepage:'main #homepage',
+            outpatientreservebtn:'main #outpatientreserve',
             installpatientbtn:'main #installpatient',
             installdoctorbtn:'main #installdoctor'
         }
+    },
+
+    outpatientReserveShow:function(){
+        this.getNav().push({
+            title:'Hello jack'
+        });
     },
 
     installdoctor:function(){
