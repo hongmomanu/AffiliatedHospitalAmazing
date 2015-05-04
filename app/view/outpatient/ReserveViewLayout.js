@@ -15,13 +15,13 @@ Ext.define('AffiliatedHospital.view.outpatient.ReserveViewLayout', {
         layout:'hbox',
         items:[
             {
-             flex:2,
-             html: 'First Panel',
-             style: 'background-color: #5E99CC;'
+                flex:2,
+                html: 'First Panel',
+                style: 'background-color: #5E99CC;'
             },
             {
                 flex:5,
-                html: 'Second Panel',
+                html: 'Second Panel'
             }
 
         ]
