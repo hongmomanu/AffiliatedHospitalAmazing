@@ -1,0 +1,9 @@
+{
+  "name": "nw-AffiliatedHospital",
+  "main": "index.html",
+  "window": {
+    "title": "AffiliatedHospital",
+    "toolbar": true
+
+  }
+}
