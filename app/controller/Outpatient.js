@@ -11,6 +11,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentCategoryList',
             'outpatient.AppointmentCategoryChildList',
             'outpatient.AppointmentDoctorList',
+            'outpatient.AppointmentDoctorDetail',
             'outpatient.ReserveViewLayout'
         ],
         requires: [
@@ -124,7 +125,11 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
     onAppointmentDoctorSelect:function(list, index, node, record){
 
-
+        var nav=this.getNav();
+        if(!this.doctorDetailView){
+            this.doctorDetailView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorDetail');
+        }
+        nav.push(this.doctorDetailView);
 
     }
 
