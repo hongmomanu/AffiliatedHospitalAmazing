@@ -25,7 +25,7 @@ Ext.define('AffiliatedHospital.view.Main', {
             items : [
 
 
-                Ext.create('Ext.ux.ActionOverFlowMenuButton', {
+               /* Ext.create('Ext.ux.ActionOverFlowMenuButton', {
                     docked: 'right',
                     align:'right',
                     iconCls:'settings',
@@ -38,8 +38,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                         scope: this,
                         handler: function() {
                            Ext.Viewport.hideMenu('right');
-                            /* this.container.setActiveItem(0);
-                            this.getContactsStore().clearFilter();*/
+
                         }
                     }, {
                             xtype: 'button',
@@ -51,14 +50,13 @@ Ext.define('AffiliatedHospital.view.Main', {
                         text: '返回首页',
                         iconCls: 'home',
                         scope: this,
-                        handler: function() {
+                        handler: function(item) {
+
                            Ext.Viewport.hideMenu('right');
-                            var mainview=this.up('main');
-                            console.log(mainview);
-                            /* Ext.getCmp('searchBar').hide();
-                            this.container.setActiveItem(0);
-                            this.getContactsStore().clearFilter();
-                            this.getContactsStore().filter('firstName', 'robert');*/
+                            //var mainview=this.up('main');
+
+                            testobj=item;
+
                         }
                     }, {
                         text: '意见反馈',
@@ -66,9 +64,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                         scope: this,
                         handler: function() {
                             Ext.Viewport.hideMenu('right');
-                            /* Ext.getCmp('searchBar').hide();
-                            this.container.setActiveItem(1);
-                            this.getBBMStore().clearFilter();*/
+
                         }
                     }, {
                         text: '软件分享',
@@ -76,9 +72,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                         scope: this,
                         handler: function() {
                             Ext.Viewport.hideMenu('right');
-                            /*Ext.getCmp('searchBar').hide();
-                            this.container.setActiveItem(1);
-                            this.getBBMStore().clearFilter();*/
+
                         }
                     }, {
                         text: '关于我们',
@@ -86,13 +80,14 @@ Ext.define('AffiliatedHospital.view.Main', {
                         scope: this,
                         handler: function() {
                             Ext.Viewport.hideMenu('right');
-                            /*Ext.getCmp('searchBar').hide();
-                            this.container.setActiveItem(1);
-                            this.getBBMStore().clearFilter();*/
+
                         }
                     }]
-                })
-
+                })*/
+                {
+                    xtype:'mainmenu',
+                    iconCls:'settings'
+                }
 
 
 

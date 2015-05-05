@@ -7,7 +7,8 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
     config: {
         views: [
-            'Main'
+            'Main',
+            'menu.MainMenu'
         ],
         requires: [
             'Ext.ux.ActionOverFlowMenuButton',
@@ -33,7 +34,8 @@ Ext.define('AffiliatedHospital.controller.Main', {
         ],
         control: {
             nav: {
-                initialize: 'initRender'
+                initialize: 'initRender',
+                returnhomemenu:'returnhomemenuFunc'
             },
             installpatientbtn:{
                 tap:'installpatient'
@@ -56,7 +58,12 @@ Ext.define('AffiliatedHospital.controller.Main', {
             installdoctorbtn:'main #installdoctor'
         }
     },
+    returnhomemenuFunc:function(){
+        Ext.Viewport.hideMenu('right');
+        var nav=this.getNav();
+        nav.pop(nav.getInnerItems().length - 1);
 
+    },
     outpatientReserveShow:function(){
 
         if(!this.reserveView){

@@ -10,6 +10,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             //'outpatient.ReserveView',
             'outpatient.AppointmentCategoryList',
             'outpatient.AppointmentCategoryChildList',
+            'outpatient.AppointmentDoctorList',
             'outpatient.ReserveViewLayout'
         ],
         requires: [
@@ -18,6 +19,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         models: [
 
             'outpatient.AppointmentCategory',
+            'outpatient.AppointmentDoctor',
             'outpatient.AppointmentCategoryChild'
 
 
@@ -25,6 +27,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         stores: [
 
             'outpatient.AppointmentCategorys',
+            'outpatient.AppointmentDoctors',
             'outpatient.AppointmentCategoryChildren'
 
 
@@ -34,7 +37,11 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                 initialize: 'initRender'
             },
             appointmentcategoryview: {
-                itemtap: 'onDoctorSelect'
+                itemtap: 'onAppointmentSelect'
+
+            },
+            appointmentcategorychildview: {
+                itemtap: 'onAppointmentChildSelect'
 
             }
 
@@ -75,7 +82,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
     },
 
-    onDoctorSelect:function(list, index, node, record){
+    onAppointmentSelect:function(list, index, node, record){
         var childview = this.getAppointmentcategorychildview();
         var store = childview.getStore();
         store.load({
@@ -89,6 +96,26 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             }
         });
 
+    },
+
+    onAppointmentChildSelect:function(list, index, node, record){
+        var nav=this.getNav();
+        if(!this.doctorView){
+            this.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList',
+                {title:record.get('name')});
+        }
+        var store=this.doctorView.getStore();
+        store.load({
+            //define the parameters of the store:
+            params: {
+                pid: record.get("_id")
+            },
+            scope: this,
+                callback: function (records, operation, success) {
+
+            }
+        });
+        nav.push(this.doctorView);
     }
 
 });
