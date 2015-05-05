@@ -38,11 +38,12 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             },
             appointmentcategoryview: {
                 itemtap: 'onAppointmentSelect'
-
+            },
+            appointmentdoctorview: {
+                itemtap: 'onAppointmentDoctorSelect'
             },
             appointmentcategorychildview: {
                 itemtap: 'onAppointmentChildSelect'
-
             }
 
         },
@@ -50,6 +51,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
             nav: 'main',
             appointmentcategoryview:'main #appointmentcategorylist',
+            appointmentdoctorview:'main #appointmentdoctorlist',
             appointmentcategorychildview:'main #appointmentcategorychildlist'
 
 
@@ -117,6 +119,11 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         });
         this.doctorView.setTitle(record.get('name'));
         nav.push(this.doctorView);
+
+    },
+
+    onAppointmentDoctorSelect:function(list, index, node, record){
+
 
     }
 

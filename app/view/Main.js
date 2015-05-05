@@ -160,7 +160,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             itemId:'outpatientreserve'
                                         }, {
                                             xtype : 'button',
-                                            text : '预约签到',
+                                            text : '智能分诊',
                                             iconAlign : 'top',
                                             icon : "resources/icons/weinai.png",
                                             handler : function() {
