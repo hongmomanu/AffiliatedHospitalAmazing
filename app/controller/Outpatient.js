@@ -101,21 +101,25 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
     onAppointmentChildSelect:function(list, index, node, record){
         var nav=this.getNav();
         if(!this.doctorView){
-            this.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList',
-                {title:record.get('name')});
+            this.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList');
         }
+
         var store=this.doctorView.getStore();
         store.load({
             //define the parameters of the store:
             params: {
                 pid: record.get("_id")
             },
+
             scope: this,
-                callback: function (records, operation, success) {
+
+            callback: function (records, operation, success) {
 
             }
         });
+        this.doctorView.setTitle(record.get('name'));
         nav.push(this.doctorView);
+
     }
 
 });

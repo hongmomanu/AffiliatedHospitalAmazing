@@ -8,6 +8,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
         itemId:'appointmentdoctorlist',
         //refreshHeightOnUpdate :false,
         scrollToTopOnRefresh :true,
+        title:'Doctor',
         //grouped:true,
         //indexBar:true,
         store: 'AppointmentDoctors',
