@@ -90,7 +90,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             params: {
                 id: record.get("_id")
             },
+
             scope: this,
+
             callback: function (records, operation, success) {
 
             }
