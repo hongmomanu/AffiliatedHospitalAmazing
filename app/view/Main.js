@@ -12,7 +12,8 @@ Ext.define('AffiliatedHospital.view.Main', {
         fullscreen: true,
         centered: true,
         autoDestroy: false,
-        scrollable: 'vertical',
+        //scrollable: 'vertical',
+        scrollable:false,
 
         height: '100%',
         width: '100%',
@@ -52,6 +53,8 @@ Ext.define('AffiliatedHospital.view.Main', {
                         scope: this,
                         handler: function() {
                            Ext.Viewport.hideMenu('right');
+                            var mainview=this.up('main');
+                            console.log(mainview);
                             /* Ext.getCmp('searchBar').hide();
                             this.container.setActiveItem(0);
                             this.getContactsStore().clearFilter();

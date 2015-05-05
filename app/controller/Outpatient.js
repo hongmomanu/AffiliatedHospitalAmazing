@@ -7,7 +7,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
     config: {
         views: [
-            'outpatient.ReserveView',
+            //'outpatient.ReserveView',
+            'outpatient.AppointmentCategoryList',
+            'outpatient.AppointmentCategoryChildList',
             'outpatient.ReserveViewLayout'
         ],
         requires: [
@@ -15,25 +17,33 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         ],
         models: [
 
-
+            'outpatient.AppointmentCategory',
+            'outpatient.AppointmentCategoryChild'
 
 
         ],
         stores: [
 
-
+            'outpatient.AppointmentCategorys',
+            'outpatient.AppointmentCategoryChildren'
 
 
         ],
         control: {
             nav: {
                 initialize: 'initRender'
+            },
+            appointmentcategoryview: {
+                itemtap: 'onDoctorSelect'
+
             }
 
         },
         refs: {
 
-            nav: 'main'
+            nav: 'main',
+            appointmentcategoryview:'main #appointmentcategorylist',
+            appointmentcategorychildview:'main #appointmentcategorychildlist'
 
 
         }
@@ -62,6 +72,22 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         }, this, {buffer: 50 });
 */
 
+
+    },
+
+    onDoctorSelect:function(list, index, node, record){
+        var childview = this.getAppointmentcategorychildview();
+        var store = childview.getStore();
+        store.load({
+            //define the parameters of the store:
+            params: {
+                id: record.get("_id")
+            },
+            scope: this,
+            callback: function (records, operation, success) {
+
+            }
+        });
 
     }
 
