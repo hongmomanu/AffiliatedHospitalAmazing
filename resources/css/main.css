@@ -413,3 +413,8 @@ body.x-desktop {
 	width:0px;
 }
 /*#endregion*/
+
+.nopadding-toolbar .x-field-select {
+	margin: 0;
+	padding: 0;
+}
