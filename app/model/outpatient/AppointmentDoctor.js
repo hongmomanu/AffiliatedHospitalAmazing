@@ -4,6 +4,8 @@ Ext.define('AffiliatedHospital.model.outpatient.AppointmentDoctor', {
         fields: [
             '_id',
             'name',
+            'time',
+            'num',
             'info'
         ]
     }

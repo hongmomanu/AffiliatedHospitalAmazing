@@ -125,6 +125,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
     onAppointmentDoctorSelect:function(list, index, node, record){
 
 
+
     }
 
 });

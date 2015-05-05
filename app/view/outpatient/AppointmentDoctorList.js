@@ -22,12 +22,26 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
 
         items: [],
         itemTpl: [
-            '<div class="headshot">',
-            '{name}',
+            '<table width="100%" height="100%"><tr>',
+            '<td width="40%">',
+            '<div class="headshot">{name}',
             '</div>',
             '<div>',
             '{info}',
-            '</div>',
+            '</div></td>',
+
+            '<td width="35%">',
+            '<div style="text-align: left">',
+            '{time}',
+            '</div></td>',
+
+            '<td width="25%">',
+            '<div style="text-align: right;padding: 5px;background-color: #0064a9;color: white;">',
+            '{num}',
+            '</div></td>',
+
+
+            '</tr></table>'
 
 
         ].join('')
