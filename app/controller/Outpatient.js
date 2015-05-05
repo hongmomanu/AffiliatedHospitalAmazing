@@ -110,12 +110,8 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             params: {
                 pid: record.get("_id")
             },
-
             scope: this,
-
-            callback: function (records, operation, success) {
-
-            }
+            callback: function (records, operation, success) {}
         });
         this.doctorView.setTitle(record.get('name'));
         nav.push(this.doctorView);
