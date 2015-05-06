@@ -161,6 +161,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                         }, {
                                             xtype : 'button',
                                             text : '智能分诊',
+                                            itemId:'possibleill',
                                             iconAlign : 'top',
                                             icon : "resources/icons/weinai.png",
                                             handler : function() {
