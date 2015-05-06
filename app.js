@@ -20,6 +20,7 @@ Ext.application({
     controllers: [
 
         'Main',
+        'Wisdomcare',
         'Outpatient'
 
     ],
