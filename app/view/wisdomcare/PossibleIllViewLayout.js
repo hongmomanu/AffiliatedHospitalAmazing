@@ -16,13 +16,12 @@ Ext.define('AffiliatedHospital.view.wisdomcare.PossibleIllViewLayout', {
         layout:'hbox',
         items:[
             {
-                flex:2,
-                html: 'First Panel'
-                /*xtype:'appointmentcategorylist',
+                flex:1,
+                xtype:'possibleilllist'/*,
                 style: 'background-color: #5E99CC;'*/
             },
             {
-                flex:5,
+                flex:1,
                 html: 'Second Panel'
                 //xtype: 'appointmentcategorychildlist'
             }

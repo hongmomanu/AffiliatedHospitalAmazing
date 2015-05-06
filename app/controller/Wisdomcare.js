@@ -7,7 +7,7 @@ Ext.define('AffiliatedHospital.controller.Wisdomcare', {
 
     config: {
         views: [
-            //'outpatient.ReserveView',
+            'wisdomcare.PossibleIllList',
             'wisdomcare.PossibleIllViewLayout'
         ],
         requires: [
@@ -15,10 +15,10 @@ Ext.define('AffiliatedHospital.controller.Wisdomcare', {
 
         ],
         models: [
-
+            'wisdomcare.PossibleIll'
         ],
         stores: [
-
+            'wisdomcare.PossibleIlls'
 
         ],
         control: {
