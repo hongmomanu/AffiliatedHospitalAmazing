@@ -50,11 +50,15 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorDetail', {
                                 html: '<div style="font-size: small; font-weight: bold;text-align: center">2015-12-20</div>'
                             }
                         ]
+                    },{
+
+                        xtype: 'reservedoctortimes',
+                        height:300
                     }
 
-                ],
-                html:'Second Panel'/*,
-                xtype: 'appointmentcategorychildlist'*/
+                ]
+                //html:'Second Panel'/*,
+
             }
 
         ]

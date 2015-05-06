@@ -12,15 +12,18 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentCategoryChildList',
             'outpatient.AppointmentDoctorList',
             'outpatient.AppointmentDoctorDetail',
+            'outpatient.ReserveDoctorTimes',
             'outpatient.ReserveViewLayout'
         ],
         requires: [
             'Ext.ux.slidenavigation.View'
+
         ],
         models: [
 
             'outpatient.AppointmentCategory',
             'outpatient.AppointmentDoctor',
+            'outpatient.ReserveDoctorTime',
             'outpatient.AppointmentCategoryChild'
 
 
@@ -29,6 +32,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
             'outpatient.AppointmentCategorys',
             'outpatient.AppointmentDoctors',
+            'outpatient.ReserveDoctorTimes',
             'outpatient.AppointmentCategoryChildren'
 
 
@@ -43,6 +47,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             appointmentdoctorview: {
                 itemtap: 'onAppointmentDoctorSelect'
             },
+            reservedoctortimesview: {
+                itemtap: 'onAppointmentTimeSelect'
+            },
             appointmentcategorychildview: {
                 itemtap: 'onAppointmentChildSelect'
             }
@@ -53,6 +60,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             nav: 'main',
             appointmentcategoryview:'main #appointmentcategorylist',
             appointmentdoctorview:'main #appointmentdoctorlist',
+            reservedoctortimesview:'main #reservedoctortimes',
             appointmentcategorychildview:'main #appointmentcategorychildlist'
 
 
@@ -130,6 +138,40 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             this.doctorDetailView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorDetail');
         }
         nav.push(this.doctorDetailView);
+        testobj=this;
+        var timestore=this.getReservedoctortimesview().getStore();
+        timestore.load({
+            //define the parameters of the store:
+            params: {
+                pid: record.get("_id")
+            },
+            scope: this,
+            callback: function (records, operation, success) {}
+        });
+
+
+    },
+
+    onAppointmentTimeSelect:function(list, index, node, record){
+
+        alert(1);
+
+       /* var nav=this.getNav();
+        if(!this.doctorDetailView){
+            this.doctorDetailView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorDetail');
+        }
+        nav.push(this.doctorDetailView);
+        testobj=this;
+        var timestore=this.getReservedoctortimesview().getStore();
+        timestore.load({
+            //define the parameters of the store:
+            params: {
+                pid: record.get("_id")
+            },
+            scope: this,
+            callback: function (records, operation, success) {}
+        });*/
+
 
     }
 

@@ -418,3 +418,8 @@ body.x-desktop {
 	margin: 0;
 	padding: 0;
 }
+
+.columnlist  .x-dataview-item {
+	width: 33%;
+	display: inline-block;
+}
