@@ -4,7 +4,7 @@ Ext.define('AffiliatedHospital.view.healthwiki.HealthWikiList', {
     xtype:'healthwikilist',
     //cls: 'x-contacts',
     config: {
-        //title: '医生圈',
+        title: '健康百科',
         //cls: 'x-contacts',
         variableHeights: true,
         itemId:'healthwikilist',

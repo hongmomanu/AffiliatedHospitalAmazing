@@ -48,6 +48,9 @@ Ext.define('AffiliatedHospital.controller.Main', {
             },
             possibleillbtn:{
                 tap:'possibleIllShow'
+            },
+            healthwikibtn:{
+                tap:'healthwikiShow'
             }
 
         },
@@ -58,6 +61,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
             homepage:'main #homepage',
             outpatientreservebtn:'main #outpatientreserve',
             possibleillbtn:'main #possibleill',
+            healthwikibtn:'main #healthwiki',
             installpatientbtn:'main #installpatient',
             installdoctorbtn:'main #installdoctor'
         }
@@ -98,6 +102,14 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
 
         //var reserveView=Ext.create('AffiliatedHospital.view.outpatient.ReserveView');
+
+    },
+    healthwikiShow:function(){
+        if(!this.healthwikiView){
+            this.healthwikiView=Ext.create('AffiliatedHospital.view.healthwiki.HealthWikiList');
+
+        }
+        this.getNav().push(this.healthwikiView);
 
     },
 

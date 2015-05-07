@@ -163,9 +163,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '智能分诊',
                                             itemId:'possibleill',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/weinai.png",
-                                            handler : function() {
-                                            }
+                                            icon : "resources/icons/weinai.png"
                                         }, {
                                             xtype : 'button',
                                             text : '取报告单',
@@ -196,11 +194,9 @@ Ext.define('AffiliatedHospital.view.Main', {
                                         }, {
                                             xtype : 'button',
                                             text : '健康百科',
+                                            itemId:'healthwiki',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/niaobu.png",
-                                            handler : function() {
-                                                // Ext.Msg.alert('关于', '欢迎使用《宝宝喂养记》<br/>版本：1.0-20140620<br/>作者：LionGIS@163.com', Ext.emptyFn);
-                                            }
+                                            icon : "resources/icons/niaobu.png"
 
                                         }]
                                     }, {

@@ -1,4 +1,4 @@
-Ext.define('AffiliatedHospital.model.healthwiki.PossibleDept', {
+Ext.define('AffiliatedHospital.model.healthwiki.HealthWiki', {
     extend: 'Ext.data.Model',
     config: {
         fields: [
