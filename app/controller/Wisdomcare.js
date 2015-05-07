@@ -81,7 +81,6 @@ Ext.define('AffiliatedHospital.controller.Wisdomcare', {
         this.doctorView.setTitle(record.get('name'));
         nav.push(this.doctorView);
 
-
     }
 
 
