@@ -21,6 +21,7 @@ Ext.application({
 
         'Main',
         'Wisdomcare',
+        'HealthWiki',
         'Outpatient'
 
     ],
