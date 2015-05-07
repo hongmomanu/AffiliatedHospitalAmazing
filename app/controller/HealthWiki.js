@@ -49,6 +49,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         this.getNav().push(this.illdetailview);
         var about=this.illdetailview.down('#about');
         var detail=this.illdetailview.down('#detail');
+        detail.setActiveItem(0);
         var successFunc = function (response, action) {
             var res=JSON.parse(response.responseText);
             about.setHtml('<div style="font-size:smaller;color:darkgrey;margin: 5px;">'+res.about+'</div>');
