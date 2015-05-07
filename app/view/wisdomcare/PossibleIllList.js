@@ -2,9 +2,17 @@ Ext.define('AffiliatedHospital.view.wisdomcare.PossibleIllList', {
     extend: 'Ext.List',
     //alias: 'widget.doctors',
     xtype:'possibleilllist',
+    initialize : function() {
+
+        var me = this;
+        me.setStore(Ext.create('AffiliatedHospital.store.wisdomcare.PossibleIlls'));
+
+        me.callParent(arguments);
+
+    },
     //cls: 'x-contacts',
     config: {
-        //title: '医生圈',
+        title: 'ill',
         //cls: 'x-contacts',
         variableHeights: true,
         itemId:'possibleilllist',
@@ -18,6 +26,8 @@ Ext.define('AffiliatedHospital.view.wisdomcare.PossibleIllList', {
             painted: function(){
 
                 this.fireEvent('viewshow', this);
+
+
             }
         },
 
@@ -34,15 +44,16 @@ Ext.define('AffiliatedHospital.view.wisdomcare.PossibleIllList', {
                         listeners: {
                             scope: this,
                             clearicontap: function(){
-                                //var mainview=Ext.Viewport.down('main');
+                                var mainview=Ext.Viewport.down('main');
 
-                                Ext.getStore('PossibleIlls').clearFilter();
+                                mainview.down('possibleilllist').getStore().clearFilter();
 
                             },
                             keyup: function(field){
                                 //get the store and the value of the field
+                                var mainview=Ext.Viewport.down('main');
                                 var value = field.getValue(),
-                                    store = Ext.getStore('PossibleIlls');
+                                    store = mainview.down('possibleilllist').getStore();
 
                                 //first clear any current filters on the store. If there is a new value, then suppress the refresh event
                                 store.clearFilter(!!value);
