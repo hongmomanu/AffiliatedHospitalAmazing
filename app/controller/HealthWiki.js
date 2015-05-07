@@ -35,15 +35,11 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             nav: 'main',
             healthwikilistview:'main #healthwikilist'
 
-
-
         }
     },
 
 
     initRender: function () {
-
-
     },
     onPssibleillSelect:function(list,index,node,record){
         if(!this.illdetailview){
@@ -51,12 +47,9 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         }
         this.illdetailview.setTitle(record.get('name'));
         this.getNav().push(this.illdetailview);
-
         var about=this.illdetailview.down('#about');
         var detail=this.illdetailview.down('#detail');
-        //testobj=detail;
         var successFunc = function (response, action) {
-
             var res=JSON.parse(response.responseText);
             about.setHtml('<div style="font-size:smaller;color:darkgrey;margin: 5px;">'+res.about+'</div>');
             detail.getInnerAt(0).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.illreasion+'</div>');
@@ -66,12 +59,11 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             detail.getInnerAt(4).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.prevention+'</div>');
             detail.getInnerAt(5).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.complication+'</div>');
             detail.getInnerAt(6).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.treatment+'</div>');
-
         };
         var failFunc = function (response, action) {
             Ext.Msg.alert('获取数据失败', '服务器连接异常，请稍后再试', Ext.emptyFn);
 
-        }
+        };
         var url = "hospital/getilldetailbyid";
         var params = {
             illid:record.get("_id")
