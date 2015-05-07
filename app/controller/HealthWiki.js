@@ -52,13 +52,13 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         var successFunc = function (response, action) {
             var res=JSON.parse(response.responseText);
             about.setHtml('<div style="font-size:smaller;color:darkgrey;margin: 5px;">'+res.about+'</div>');
-            detail.getInnerAt(0).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.illreasion+'</div>');
-            detail.getInnerAt(1).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.illdescription+'</div>');
-            detail.getInnerAt(2).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.checking+'</div>');
-            detail.getInnerAt(3).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.diagnosis+'</div>');
-            detail.getInnerAt(4).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.prevention+'</div>');
-            detail.getInnerAt(5).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.complication+'</div>');
-            detail.getInnerAt(6).setHtml('<div style="font-size:smaller;color: dimgray;margin: 5px;">'+res.treatment+'</div>');
+            detail.getInnerAt(0).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.illreasion+'</div>');
+            detail.getInnerAt(1).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.illdescription+'</div>');
+            detail.getInnerAt(2).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.checking+'</div>');
+            detail.getInnerAt(3).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.diagnosis+'</div>');
+            detail.getInnerAt(4).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.prevention+'</div>');
+            detail.getInnerAt(5).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.complication+'</div>');
+            detail.getInnerAt(6).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.treatment+'</div>');
         };
         var failFunc = function (response, action) {
             Ext.Msg.alert('获取数据失败', '服务器连接异常，请稍后再试', Ext.emptyFn);
