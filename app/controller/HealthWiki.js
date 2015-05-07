@@ -45,6 +45,10 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
     },
     onHealthWikiItemSelect:function(list, index, node, record){
+        console.log(record);
+        if(record.get("_id")==1){
+
+        }
         /*var nav=this.getNav();
         var deptview=this.getPossibledeptlistview();
         var store=deptview.getStore();
