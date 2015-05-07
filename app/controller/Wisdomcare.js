@@ -8,6 +8,7 @@ Ext.define('AffiliatedHospital.controller.Wisdomcare', {
     config: {
         views: [
             'wisdomcare.PossibleIllList',
+            'wisdomcare.PossibleDeptList',
             'wisdomcare.PossibleIllViewLayout'
         ],
         requires: [
@@ -15,21 +16,32 @@ Ext.define('AffiliatedHospital.controller.Wisdomcare', {
 
         ],
         models: [
-            'wisdomcare.PossibleIll'
+            'wisdomcare.PossibleIll',
+            'wisdomcare.PossibleDept'
         ],
         stores: [
-            'wisdomcare.PossibleIlls'
+            'wisdomcare.PossibleIlls',
+            'wisdomcare.PossibleDepts'
 
         ],
         control: {
             nav: {
                 initialize: 'initRender'
+            },
+            possibleilllistview: {
+                itemtap: 'onPossibleillSelect'
+            },
+            possibledeptlistview: {
+                itemtap: 'onPossibledeptSelect'
             }
 
         },
         refs: {
 
-            nav: 'main'
+            nav: 'main',
+            possibleilllistview:'main #possibleilllist',
+            possibledeptlistview:'main #possibledeptlist'
+
 
 
         }
@@ -37,6 +49,37 @@ Ext.define('AffiliatedHospital.controller.Wisdomcare', {
 
 
     initRender: function () {
+
+
+    },
+    onPossibleillSelect:function(list, index, node, record){
+        var nav=this.getNav();
+        var deptview=this.getPossibledeptlistview();
+        var store=deptview.getStore();
+        store.removeAll();
+        Ext.each(record.get('depts'),function(item){
+            store.add({name:item});
+        })
+
+
+    },
+    onPossibledeptSelect:function(list, index, node, record){
+        var nav=this.getNav();
+        if(!this.doctorView){
+            this.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList');
+        }
+
+        var store=this.doctorView.getStore();
+        store.load({
+            //define the parameters of the store:
+            params: {
+                pid: record.get("_id")
+            },
+            scope: this,
+            callback: function (records, operation, success) {}
+        });
+        this.doctorView.setTitle(record.get('name'));
+        nav.push(this.doctorView);
 
 
     }

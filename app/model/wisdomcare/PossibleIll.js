@@ -3,7 +3,8 @@ Ext.define('AffiliatedHospital.model.wisdomcare.PossibleIll', {
     config: {
         fields: [
             '_id',
-            'name'
+            'name',
+            'depts'
         ]
     }
 });

@@ -22,8 +22,8 @@ Ext.define('AffiliatedHospital.view.wisdomcare.PossibleIllViewLayout', {
             },
             {
                 flex:1,
-                html: 'Second Panel'
-                //xtype: 'appointmentcategorychildlist'
+                //html: 'Second Panel'
+                xtype: 'possibledeptlist'
             }
 
         ]
