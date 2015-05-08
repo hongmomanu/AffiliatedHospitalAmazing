@@ -55,6 +55,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             depts.add( {
                 xtype: 'button',
                 text: item,
+                //width:'50%',
                 badgeText: '预约'
             });
         });
