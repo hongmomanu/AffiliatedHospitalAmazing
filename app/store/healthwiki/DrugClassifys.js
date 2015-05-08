@@ -5,7 +5,7 @@ Ext.define('AffiliatedHospital.store.healthwiki.DrugClassifys', {
         autoLoad:false,
         proxy: {
             type: 'ajax',
-            url: Globle_Variable.serverurl+"hospital/getdrugclassify"
+            url: Globle_Variable.serverurl+"hospital/getdrugclassifybypid"
         }
 
     }

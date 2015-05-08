@@ -4,6 +4,7 @@ Ext.define('AffiliatedHospital.model.healthwiki.DrugClassify', {
         fields: [
             '_id',
             'parentid',
+            'counts',
             'name'
         ]
     }

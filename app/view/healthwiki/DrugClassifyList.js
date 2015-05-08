@@ -2,6 +2,13 @@ Ext.define('AffiliatedHospital.view.healthwiki.DrugClassifyList', {
     extend: 'Ext.List',
     //alias: 'widget.doctors',
     xtype:'drugclassifylist',
+    initialize : function(arguments) {
+
+        var me = this;
+        me.setStore(Ext.create('AffiliatedHospital.store.healthwiki.DrugClassifys'));
+        me.callParent(arguments);
+
+    },
     //cls: 'x-contacts',
     config: {
         title: '常见药物',
@@ -18,7 +25,7 @@ Ext.define('AffiliatedHospital.view.healthwiki.DrugClassifyList', {
         scrollToTopOnRefresh :true,
         //grouped:true,
         //indexBar:true,
-        store: 'DrugClassifys',
+        //store: 'DrugClassifys',
 
         listeners: {
             painted: function(){

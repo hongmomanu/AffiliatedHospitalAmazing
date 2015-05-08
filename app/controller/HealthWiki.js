@@ -104,7 +104,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
                 pid: record.get("_id")
             }
         });
-        //this.possibleillview.setTitle(record.get('name'));
+        this.drugview.setTitle(record.get('name'));
         this.getNav().push(this.drugview);
 
 
@@ -126,9 +126,65 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         }else if(record.get("_id")==2){
 
 
+            if(!this.drugclassifysview){
+                this.drugclassifysview=Ext.create('AffiliatedHospital.view.healthwiki.DrugClassifyList',
+                    {
+
+                        onItemDisclosure : {//若配置该项，list每一项的右侧都会出现一个小图标。其他功能请查看api
+                            handler : function(record, btn, index) {
+
+                                this.select(index);
+                            }
+                        }
+                    }
+                );
+                this.drugclassifysview.on({
+                    itemtap: {fn: this.onDrugClassifySelect, scope: this, single: false}
+                });
+
+            }
+            var store=this.drugclassifysview.getStore();
+            store.load({
+                params: {
+                    pid: 'root'
+                }
+            });
+            this.getNav().push(this.drugclassifysview);
 
 
         }
+
+    },
+    onDrugClassifySelect:function(list,index,node,record){
+        //
+        //console.log(record);
+        if(record.get('counts')>0){
+            var view=Ext.create('AffiliatedHospital.view.healthwiki.DrugClassifyList',{
+
+                onItemDisclosure : {//若配置该项，list每一项的右侧都会出现一个小图标。其他功能请查看api
+                    handler : function(record, btn, index) {
+
+                        this.select(index);
+                    }
+                }
+            });
+            var store=view.getStore();
+            store.load({
+                params: {
+                    pid:record.get('_id')
+                }
+            });
+            this.getNav().push(view);
+            console.log(record.get('counts'));
+            view.on({
+                itemtap: {fn: this.onDrugClassifySelect, scope: this, single: false}
+            });
+        }
+        else{
+            this.onCommonDrugSelect (list,index,node,record);
+        }
+
+
 
     },
     onPssibleillSelect:function(list,index,node,record){
