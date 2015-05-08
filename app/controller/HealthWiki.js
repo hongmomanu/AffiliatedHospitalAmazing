@@ -285,8 +285,9 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
                     pid:record.get('_id')
                 }
             });
-            this.getNav().push(view);
             view.setTitle(record.get("name"));
+            this.getNav().push(view);
+
             view.on({
                 itemtap: {fn: this.onAssayClassifySelect, scope: this, single: false}
             });
