@@ -11,8 +11,11 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.DrugBaseList',
             'healthwiki.CommonDrugList',
             'healthwiki.DrugClassifyList',
+            'healthwiki.AssayClassifyList',
             'healthwiki.AidClassifyList',
+            'healthwiki.AidDetail',
             'healthwiki.DrugList',
+            'healthwiki.AidList',
             'healthwiki.DrugDetail',
             'healthwiki.IllDetail'
         ],
@@ -24,7 +27,9 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.HealthWiki',
             'healthwiki.CommonDrug',
             'healthwiki.Drug',
+            'healthwiki.Aid',
             'healthwiki.DrugClassify',
+            'healthwiki.AssayClassify',
             'healthwiki.AidClassify',
             'healthwiki.DrugBase'
         ],
@@ -32,8 +37,10 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.HealthWikis',
             'healthwiki.CommonDrugs',
             'healthwiki.DrugClassifys',
+            'healthwiki.AssayClassifys',
             'healthwiki.AidClassifys',
             'healthwiki.Drugs',
+            'healthwiki.Aids',
             'healthwiki.DrugBases'
 
         ],
@@ -182,14 +189,50 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             });
         }
         else{
-            this.onAidSelect (list,index,node,record);
+            this.onAidLeafSelect (list,index,node,record);
         }
 
 
     },
+    onAidLeafSelect:function(list,index,node,record){
+
+        if(!this.aidlistview){
+            this.aidlistview=Ext.create('AffiliatedHospital.view.healthwiki.AidList');
+            this.aidlistview.on({
+                itemtap: {fn: this.onAidSelect, scope: this, single: false}
+            });
+        }
+        this.aidlistview.setTitle(record.get('name'));
+        var store=this.aidlistview.getStore();
+        store.load({
+            params: {
+                pid:record.get('_id')
+            }
+        });
+        this.getNav().push(this.aidlistview);
+
+    },
     onAidSelect:function(list,index,node,record){
 
-        alert(22);
+        if(!this.aiddetailview){
+            this.aiddetailview=Ext.create('AffiliatedHospital.view.healthwiki.AidDetail');
+        }
+        this.aiddetailview.setTitle(record.get('name'));
+        this.getNav().push(this.aiddetailview);
+        var me=this;
+        var successFunc = function (response, action) {
+            var res=JSON.parse(response.responseText);
+            me.aiddetailview.setHtml(res.content);
+        };
+        var failFunc = function (response, action) {
+            Ext.Msg.alert('获取数据失败', '服务器连接异常，请稍后再试', Ext.emptyFn);
+
+        };
+        var url = "hospital/getaiddetailbyid";
+        var params = {
+            pid:record.get("_id")
+        };
+        CommonUtil.ajaxSend(params, url, successFunc, failFunc, 'POST');
 
     },
     onDrugClassifySelect:function(list,index,node,record){
@@ -219,6 +262,38 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         }
         else{
             this.onCommonDrugSelect (list,index,node,record);
+        }
+
+
+
+    },onAssayClassifySelect:function(list,index,node,record){
+        //
+        //console.log(record);
+        if(record.get('counts')>0){
+            var view=Ext.create('AffiliatedHospital.view.healthwiki.AssayClassifyList',{
+
+                onItemDisclosure : {//若配置该项，list每一项的右侧都会出现一个小图标。其他功能请查看api
+                    handler : function(record, btn, index) {
+
+                        this.select(index);
+                    }
+                }
+            });
+            var store=view.getStore();
+            store.load({
+                params: {
+                    pid:record.get('_id')
+                }
+            });
+            this.getNav().push(view);
+            view.setTitle(record.get("name"));
+            view.on({
+                itemtap: {fn: this.onAssayClassifySelect, scope: this, single: false}
+            });
+        }
+        else{
+            //this.onCommonDrugSelect (list,index,node,record);
+            alert(22);
         }
 
 
@@ -289,7 +364,8 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
     },
     onHealthWikiItemSelect:function(list, index, node, record){
-        if(record.get("_id")==1){
+        var typeid=record.get("_id");
+        if(typeid==1){
             if(!this.possibleillview){
                 this.possibleillview=Ext.create('AffiliatedHospital.view.wisdomcare.PossibleIllList',
                     {
@@ -309,7 +385,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             this.possibleillview.setTitle(record.get('name'));
             this.getNav().push(this.possibleillview);
 
-        }else if(record.get("_id")==2){
+        }else if(typeid==2){
 
             if(!this.drugbaseview){
                 this.drugbaseview=Ext.create('AffiliatedHospital.view.healthwiki.DrugBaseList');
@@ -323,7 +399,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
 
 
-        }else if(record.get("_id")==3){
+        }else if(typeid==3){
 
             if(!this.aidbaseview){
                 this.aidbaseview=Ext.create('AffiliatedHospital.view.healthwiki.AidClassifyList');
@@ -340,6 +416,34 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             });
             this.aidbaseview.setTitle(record.get('name'));
             this.getNav().push(this.aidbaseview);
+
+        }else if(typeid==4){
+            if(!this.assayclassifysview){
+                this.assayclassifysview=Ext.create('AffiliatedHospital.view.healthwiki.AssayClassifyList',
+                    {
+
+                        onItemDisclosure : {//若配置该项，list每一项的右侧都会出现一个小图标。其他功能请查看api
+                            handler : function(record, btn, index) {
+
+                                this.select(index);
+                            }
+                        }
+                    }
+                );
+                this.assayclassifysview.on({
+                    itemtap: {fn: this.onAssayClassifySelect, scope: this, single: false}
+                });
+
+            }
+            this.assayclassifysview.setTitle(record.get('name'));
+            var store=this.assayclassifysview.getStore();
+            store.load({
+                params: {
+                    pid: 'root'
+                }
+            });
+            this.getNav().push(this.assayclassifysview);
+
 
         }
 
