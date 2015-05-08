@@ -36,10 +36,13 @@ Ext.define('AffiliatedHospital.view.healthwiki.IllDetail', {
 
             {
                 flex:1,
+                itemId:'depts',
+                scrollable:true,
                 items: [
                     {
                         docked: 'top',
                         xtype: 'titlebar',
+
                         //height:20,
                         minHeight: '1em',
                         items: [
@@ -50,9 +53,9 @@ Ext.define('AffiliatedHospital.view.healthwiki.IllDetail', {
                         ]
                     }
 
-                ],
+                ]/*,
                 html: '<div style="font-size:smaller;color:darkgrey;margin: 5px;">专业特长：眼底病诊疗，视网膜、玻璃体手术、糖尿病视网膜病激光诊疗</div>'
-                /*xtype:'appointmentcategorylist',
+               */ /*xtype:'appointmentcategorylist',
                  style: 'background-color: #5E99CC;'*/
             },
 

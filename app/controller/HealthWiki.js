@@ -49,6 +49,16 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         this.getNav().push(this.illdetailview);
         var about=this.illdetailview.down('#about');
         var detail=this.illdetailview.down('#detail');
+        var depts=this.illdetailview.down('#depts');
+        depts.removeAll();
+        Ext.each(record.get('depts'),function(item){
+            depts.add( {
+                xtype: 'button',
+                text: item,
+                badgeText: '预约'
+            });
+        });
+
         detail.setActiveItem(0);
         var successFunc = function (response, action) {
             var res=JSON.parse(response.responseText);
