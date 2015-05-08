@@ -8,6 +8,11 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
     config: {
         views: [
             'healthwiki.HealthWikiList',
+            'healthwiki.DrugBaseList',
+            'healthwiki.CommonDrugList',
+            'healthwiki.DrugClassifyList',
+            'healthwiki.DrugList',
+            'healthwiki.DrugDetail',
             'healthwiki.IllDetail'
         ],
         requires: [
@@ -15,10 +20,18 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
         ],
         models: [
-            'healthwiki.HealthWiki'
+            'healthwiki.HealthWiki',
+            'healthwiki.CommonDrug',
+            'healthwiki.Drug',
+            'healthwiki.DrugClassify',
+            'healthwiki.DrugBase'
         ],
         stores: [
-            'healthwiki.HealthWikis'
+            'healthwiki.HealthWikis',
+            'healthwiki.CommonDrugs',
+            'healthwiki.DrugClassifys',
+            'healthwiki.Drugs',
+            'healthwiki.DrugBases'
 
         ],
         control: {
@@ -40,6 +53,81 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
 
     initRender: function () {
+    },
+    onDrugSelect:function(list,index,node,record){
+        //console.log(record);
+        if(!this.drugdetailview){
+            this.drugdetailview=Ext.create('AffiliatedHospital.view.healthwiki.DrugDetail');
+        }
+        this.drugdetailview.setTitle(record.get('name'));
+        this.getNav().push(this.drugdetailview);
+        var form=this.drugdetailview.down('formpanel');
+
+        var successFunc = function (response, action) {
+            var res=JSON.parse(response.responseText);
+            form.setValues(res);
+            /*about.setHtml('<div style="font-size:smaller;color:darkgrey;margin: 5px;">'+res.about+'</div>');
+            detail.getInnerAt(0).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.illreasion+'</div>');
+            detail.getInnerAt(1).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.illdescription+'</div>');
+            detail.getInnerAt(2).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.checking+'</div>');
+            detail.getInnerAt(3).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.diagnosis+'</div>');
+            detail.getInnerAt(4).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.prevention+'</div>');
+            detail.getInnerAt(5).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.complication+'</div>');
+            detail.getInnerAt(6).setHtml('<div style="font-size:smaller;color: dimgray;">'+res.treatment+'</div>');*/
+        };
+        var failFunc = function (response, action) {
+            Ext.Msg.alert('获取数据失败', '服务器连接异常，请稍后再试', Ext.emptyFn);
+
+        };
+        var url = "hospital/getdrugdetailbyid";
+        var params = {
+            drugid:record.get("_id")
+        };
+        CommonUtil.ajaxSend(params, url, successFunc, failFunc, 'POST');
+
+
+
+
+    },
+    onCommonDrugSelect:function(list,index,node,record){
+
+        if(!this.drugview){
+            this.drugview=Ext.create('AffiliatedHospital.view.healthwiki.DrugList');
+            this.drugview.on({
+                itemtap: {fn: this.onDrugSelect, scope: this, single: false}
+            });
+
+        }
+        var store=this.drugview.getStore();
+        store.load({
+            params: {
+                pid: record.get("_id")
+            }
+        });
+        //this.possibleillview.setTitle(record.get('name'));
+        this.getNav().push(this.drugview);
+
+
+    },
+    onDrugBaseSelect:function(list,index,node,record){
+
+        if(record.get("_id")==1){
+            if(!this.commondrugview){
+                this.commondrugview=Ext.create('AffiliatedHospital.view.healthwiki.CommonDrugList');
+                this.commondrugview.on({
+                    itemtap: {fn: this.onCommonDrugSelect, scope: this, single: false}
+                });
+
+            }
+            var store=this.commondrugview.getStore();
+            store.load();
+            this.getNav().push(this.commondrugview);
+
+        }else if(record.get("_id")==2){
+
+
+        }
+
     },
     onPssibleillSelect:function(list,index,node,record){
         if(!this.illdetailview){
@@ -127,6 +215,17 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             this.getNav().push(this.possibleillview);
 
         }else if(record.get("_id")==2){
+
+            if(!this.drugbaseview){
+                this.drugbaseview=Ext.create('AffiliatedHospital.view.healthwiki.DrugBaseList');
+                this.drugbaseview.on({
+                    itemtap: {fn: this.onDrugBaseSelect, scope: this, single: false}
+                });
+
+            }
+            //this.possibleillview.setTitle(record.get('name'));
+            this.getNav().push(this.drugbaseview);
+
 
 
         }
