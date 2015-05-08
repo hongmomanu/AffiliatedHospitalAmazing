@@ -2,6 +2,14 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
     extend: 'Ext.List',
     //alias: 'widget.doctors',
     xtype:'appointmentdoctorlist',
+    initialize : function() {
+
+        var me = this;
+        me.setStore(Ext.create('AffiliatedHospital.store.outpatient.AppointmentDoctors'));
+
+        me.callParent(arguments);
+
+    },
     config: {
 
         variableHeights: true,
@@ -11,7 +19,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
         title:'Doctor',
         //grouped:true,
         //indexBar:true,
-        store: 'AppointmentDoctors',
+        //store: 'AppointmentDoctors',
 
         listeners: {
             painted: function(){

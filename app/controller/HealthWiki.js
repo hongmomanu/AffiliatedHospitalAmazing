@@ -51,10 +51,32 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         var detail=this.illdetailview.down('#detail');
         var depts=this.illdetailview.down('#depts');
         depts.removeAll();
+        var me=this;
         Ext.each(record.get('depts'),function(item){
             depts.add( {
                 xtype: 'button',
                 text: item,
+                handler:function(){
+
+                    var nav=me.getNav();
+                    if(!me.doctorView){
+                        me.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList');
+                    }
+
+                    var store=me.doctorView.getStore();
+                    store.load({
+                        //define the parameters of the store:
+                        params: {
+                            pid: record.get("_id")
+                        },
+                        scope: me,
+                        callback: function (records, operation, success) {}
+                    });
+                    me.doctorView.setTitle(record.get('name'));
+                    nav.push(me.doctorView);
+
+
+                },
                 //width:'50%',
                 badgeText: '预约'
             });

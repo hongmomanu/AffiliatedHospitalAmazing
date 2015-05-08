@@ -20,7 +20,7 @@ Ext.define('AffiliatedHospital.view.wisdomcare.PossibleIllList', {
         scrollToTopOnRefresh :true,
         //grouped:true,
         //indexBar:true,
-        store: 'PossibleIlls',
+        //store: 'PossibleIlls',
 
         listeners: {
             painted: function(){
