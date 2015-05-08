@@ -7,7 +7,7 @@ Ext.define('AffiliatedHospital.store.healthwiki.HealthWikis', {
             {name: "药物库",    _id: 2},
             {name: "急救库",    _id: 3},
             {name: "化验单解读",    _id: 4},
-            {name: "健康小工具",    _id: 5},
+            {name: "健康小工具",    _id: 5}
 
         ]
 

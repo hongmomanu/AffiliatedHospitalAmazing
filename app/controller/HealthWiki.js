@@ -113,8 +113,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
                         itemId:'possibleilllist1',
                         onItemDisclosure : {//若配置该项，list每一项的右侧都会出现一个小图标。其他功能请查看api
                             handler : function(record, btn, index) {
-                                //alert('点击小按钮触发的事件');
-                                //console.log(record)
+
                                 this.select(index);
                             }
                         }
@@ -127,16 +126,11 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             this.possibleillview.setTitle(record.get('name'));
             this.getNav().push(this.possibleillview);
 
+        }else if(record.get("_id")==2){
 
-           // console.log("oo");
+
         }
-        /*var nav=this.getNav();
-        var deptview=this.getPossibledeptlistview();
-        var store=deptview.getStore();
-        store.removeAll();
-        Ext.each(record.get('depts'),function(item){
-            store.add({name:item});
-        })*/
+
 
 
     }
