@@ -126,6 +126,8 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         }else if(record.get("_id")==2){
 
 
+
+
         }
 
     },
