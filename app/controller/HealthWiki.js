@@ -11,6 +11,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.DrugBaseList',
             'healthwiki.CommonDrugList',
             'healthwiki.DrugClassifyList',
+            'healthwiki.AidClassifyList',
             'healthwiki.DrugList',
             'healthwiki.DrugDetail',
             'healthwiki.IllDetail'
@@ -24,12 +25,14 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.CommonDrug',
             'healthwiki.Drug',
             'healthwiki.DrugClassify',
+            'healthwiki.AidClassify',
             'healthwiki.DrugBase'
         ],
         stores: [
             'healthwiki.HealthWikis',
             'healthwiki.CommonDrugs',
             'healthwiki.DrugClassifys',
+            'healthwiki.AidClassifys',
             'healthwiki.Drugs',
             'healthwiki.DrugBases'
 
@@ -153,6 +156,40 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
 
         }
+
+    },
+    onAidBaseSelect:function(list,index,node,record){
+
+        if(record.get('counts')>0){
+            var view=Ext.create('AffiliatedHospital.view.healthwiki.AidClassifyList',{
+
+                onItemDisclosure : {//若配置该项，list每一项的右侧都会出现一个小图标。其他功能请查看api
+                    handler : function(record, btn, index) {
+
+                        this.select(index);
+                    }
+                }
+            });
+            var store=view.getStore();
+            store.load({
+                params: {
+                    pid:record.get('_id')
+                }
+            });
+            this.getNav().push(view);
+            view.on({
+                itemtap: {fn: this.onAidBaseSelect, scope: this, single: false}
+            });
+        }
+        else{
+            this.onAidSelect (list,index,node,record);
+        }
+
+
+    },
+    onAidSelect:function(list,index,node,record){
+
+        alert(22);
 
     },
     onDrugClassifySelect:function(list,index,node,record){
@@ -285,6 +322,24 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             this.getNav().push(this.drugbaseview);
 
 
+
+        }else if(record.get("_id")==3){
+
+            if(!this.aidbaseview){
+                this.aidbaseview=Ext.create('AffiliatedHospital.view.healthwiki.AidClassifyList');
+                this.aidbaseview.on({
+                    itemtap: {fn: this.onAidBaseSelect, scope: this, single: false}
+                });
+
+            }
+            var store=this.aidbaseview.getStore();
+            store.load({
+                params: {
+                    pid: 'root'
+                }
+            });
+            this.aidbaseview.setTitle(record.get('name'));
+            this.getNav().push(this.aidbaseview);
 
         }
 
