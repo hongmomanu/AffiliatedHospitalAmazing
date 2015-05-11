@@ -16,6 +16,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.AidDetail',
             'healthwiki.DrugList',
             'healthwiki.AidList',
+            'healthwiki.AssayList',
             'healthwiki.DrugDetail',
             'healthwiki.IllDetail'
         ],
@@ -28,6 +29,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.CommonDrug',
             'healthwiki.Drug',
             'healthwiki.Aid',
+            'healthwiki.Assay',
             'healthwiki.DrugClassify',
             'healthwiki.AssayClassify',
             'healthwiki.AidClassify',
@@ -41,6 +43,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.AidClassifys',
             'healthwiki.Drugs',
             'healthwiki.Aids',
+            'healthwiki.Assays',
             'healthwiki.DrugBases'
 
         ],
@@ -293,11 +296,29 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             });
         }
         else{
-            //this.onCommonDrugSelect (list,index,node,record);
-            alert(22);
+            this.onAssayLeafSelect (list,index,node,record);
+            //alert(22);
         }
 
 
+
+    },
+    onAssayLeafSelect:function(list,index,node,record){
+
+        if(!this.assaylistview){
+            this.assaylistview=Ext.create('AffiliatedHospital.view.healthwiki.AssayList');
+            /*this.assaylistview.on({
+                itemtap: {fn: this.onAidSelect, scope: this, single: false}
+            });*/
+        }
+        this.assaylistview.setTitle(record.get('name'));
+        var store=this.assaylistview.getStore();
+        store.load({
+            params: {
+                pid:record.get('_id')
+            }
+        });
+        this.getNav().push(this.assaylistview);
 
     },
     onPssibleillSelect:function(list,index,node,record){
