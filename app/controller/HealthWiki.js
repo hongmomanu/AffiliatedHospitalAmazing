@@ -13,9 +13,12 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.DrugClassifyList',
             'healthwiki.AssayClassifyList',
             'healthwiki.AidClassifyList',
+
             'healthwiki.AidDetail',
             'healthwiki.DrugList',
             'healthwiki.AidList',
+            'healthwiki.BmiDetail',
+            'healthwiki.ToolContainer',
             'healthwiki.AssayList',
             'healthwiki.DrugDetail',
             'healthwiki.AssayDetail',
@@ -54,12 +57,28 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             },
             healthwikilistview: {
                 itemtap: 'onHealthWikiItemSelect'
+            },
+            bmibtn:{
+
+                tap:'showbmiview'
+            },
+            bornbtn:{
+
+                tap:'showbornview'
+            },
+            caculatebtn:{
+                tap:'makebmicaculate'
             }
 
         },
         refs: {
 
             nav: 'main',
+            bmibtn:'toolcontainer #bmi',
+            bornbtn:'toolcontainer #born',
+            caculatebtn:'bmidetail #caculate',
+            resultpanel:'bmidetail #result',
+            caculateform:'bmidetail #caculateform',
             healthwikilistview:'main #healthwikilist'
 
         }
@@ -67,6 +86,29 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
 
     initRender: function () {
+    },
+    showbmiview:function(){
+        if(!this.bmidetailview){
+            this.bmidetailview=Ext.create('AffiliatedHospital.view.healthwiki.BmiDetail');
+        }
+        this.getNav().push(this.bmidetailview);
+    },
+    showbornview:function(){
+        alert(2);
+
+    },
+    makebmicaculate:function(){
+
+        var height=this.getCaculateform().getValues()['height'];
+        var weight=this.getCaculateform().getValues()['weight'];
+        var value=(weight/(height*height)*10000).toFixed(1);
+        var html="<div style='color: #006bb6'>您的BMI值为："+value+"</div>";
+        html+="<div><div>过  低：小于18.5 "+(value<18.5?"<i class=\"fa fa-check\"></i>":"")+"</div>" +
+        "<div>正  常：18.5～23.9 "+((value>=18.5&&value<24)?"<i class=\"fa fa-check\"></i>":"")+"</div>" +
+        "<div>超  重：24.0～27.9 "+((value>=24.0&&value<28)?"<i class=\"fa fa-check\"></i>":"")+"</div>" +
+        "<div>肥  胖：大于28 "+(value>=28?"<i class=\"fa fa-check\"></i>":"")+"</div></div>";
+        this.getResultpanel().setHtml(html);
+        //alert(3);
     },
     onDrugSelect:function(list,index,node,record){
         //console.log(record);
@@ -233,7 +275,6 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         };
         var failFunc = function (response, action) {
             Ext.Msg.alert('获取数据失败', '服务器连接异常，请稍后再试', Ext.emptyFn);
-
         };
         var url = "hospital/getassaydetailbyid";
         var params = {
@@ -492,6 +533,16 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             });
             this.getNav().push(this.assayclassifysview);
 
+
+        }else if(typeid==5){
+
+            if(!this.toolview){
+                this.toolview=Ext.create('AffiliatedHospital.view.healthwiki.ToolContainer');
+
+
+            }
+            this.toolview.setTitle(record.get('name'));
+            this.getNav().push(this.toolview);
 
         }
 
