@@ -18,6 +18,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.DrugList',
             'healthwiki.AidList',
             'healthwiki.BmiDetail',
+            'healthwiki.BornDetail',
             'healthwiki.ToolContainer',
             'healthwiki.AssayList',
             'healthwiki.DrugDetail',
@@ -66,8 +67,11 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
                 tap:'showbornview'
             },
-            caculatebtn:{
+            bmicaculatebtn:{
                 tap:'makebmicaculate'
+            },
+            borncaculatebtn:{
+                tap:'makeborncaculate'
             }
 
         },
@@ -76,9 +80,12 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             nav: 'main',
             bmibtn:'toolcontainer #bmi',
             bornbtn:'toolcontainer #born',
-            caculatebtn:'bmidetail #caculate',
+            bmicaculatebtn:'bmidetail #caculate',
+            borncaculatebtn:'borndetail #caculate',
             resultpanel:'bmidetail #result',
+            bornresultpanel:'borndetail #result',
             caculateform:'bmidetail #caculateform',
+            borncaculateform:'borndetail #caculateform',
             healthwikilistview:'main #healthwikilist'
 
         }
@@ -86,6 +93,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
 
     initRender: function () {
+        testobj=this;
     },
     showbmiview:function(){
         if(!this.bmidetailview){
@@ -94,7 +102,10 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         this.getNav().push(this.bmidetailview);
     },
     showbornview:function(){
-        alert(2);
+        if(!this.borndetailview){
+            this.borndetailview=Ext.create('AffiliatedHospital.view.healthwiki.BornDetail');
+        }
+        this.getNav().push(this.borndetailview);
 
     },
     makebmicaculate:function(){
@@ -109,6 +120,75 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         "<div>肥  胖：大于28 "+(value>=28?"<i class=\"fa fa-check\"></i>":"")+"</div></div>";
         this.getResultpanel().setHtml(html);
         //alert(3);
+    },
+    makeborncaculate:function(btn){
+
+        var time=this.getBorncaculateform().getValues()["monthday"];
+        var borntime=Ext.Date.add(time,Ext.Date.DAY,280);
+        var bornstr=Ext.Date.format(borntime,'Y-m-d');
+        var html="<div style='color: #006bb6'>您的预产期将是：</div><div style='color: darkred'>" +
+            bornstr
+            "</div>";
+        this.getBornresultpanel().setHtml(html);
+
+    },
+
+
+    soapCommon:function(url,funcname,xmlns,fields){
+        var str_head='<?xml version="1.0" encoding="utf-8"?>'+
+            '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">'
+            +'<soap12:Body>';
+
+        var funcname_head='<'+funcname+ ' xmlns="'+xmlns+(fields.length==0?'"/>':'">');
+
+        var content_str='';
+
+        for(var i=0;i<fields.length;i++ ){
+            content_str+='<'+fields[i].name+'>'+fields[i].value+'</'+fields[i].name+'>';
+        }
+
+
+        var funcname_tail=(fields.length==0?'':'</'+funcname+'>');
+
+
+        var str_tail='</soap12:Body></soap12:Envelope>';
+
+
+        var content=str_head+funcname_head+content_str+funcname_tail+str_tail;
+
+        var successFunc = function (form, action) {
+            Ext.Msg.alert("提示信息","网页发布成功");
+        };
+        var failFunc = function (form, action) {
+            Ext.Msg.alert("提示信息","发布失败");
+        };
+        var item={};
+
+        item.url=url;
+
+        item.content=content;
+
+        CommonUtil.ajaxSend(item, 'hospital/sendsoap', successFunc, failFunc, "post");
+
+
+    },
+
+    soapTest:function(){
+
+
+
+
+        var url=Globle_Variable.soapurl;
+        var fields=[
+            //{name:'mzhm',value:'A003300005409'}
+        ]
+        this.soapCommon(url,'of_yyks','n_yy',fields);
+
+
+
+
+
+
     },
     onDrugSelect:function(list,index,node,record){
         //console.log(record);
