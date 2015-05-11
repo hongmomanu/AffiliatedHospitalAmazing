@@ -18,6 +18,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
             'healthwiki.AidList',
             'healthwiki.AssayList',
             'healthwiki.DrugDetail',
+            'healthwiki.AssayDetail',
             'healthwiki.IllDetail'
         ],
         requires: [
@@ -215,6 +216,28 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         this.getNav().push(this.aidlistview);
 
     },
+    onAssaySelect:function(list,index,node,record){
+
+        if(!this.assaydetailview){
+            this.assaydetailview=Ext.create('AffiliatedHospital.view.healthwiki.AssayDetail');
+        }
+        this.assaydetailview.setTitle(record.get('name'));
+        this.getNav().push(this.assaydetailview);
+        var me=this;
+        /*var successFunc = function (response, action) {
+            var res=JSON.parse(response.responseText);
+            me.aiddetailview.setHtml(res.content);
+        };
+        var failFunc = function (response, action) {
+            Ext.Msg.alert('获取数据失败', '服务器连接异常，请稍后再试', Ext.emptyFn);
+
+        };
+        var url = "hospital/getaiddetailbyid";
+        var params = {
+            pid:record.get("_id")
+        };
+        CommonUtil.ajaxSend(params, url, successFunc, failFunc, 'POST');*/
+    },
     onAidSelect:function(list,index,node,record){
 
         if(!this.aiddetailview){
@@ -307,9 +330,9 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
 
         if(!this.assaylistview){
             this.assaylistview=Ext.create('AffiliatedHospital.view.healthwiki.AssayList');
-            /*this.assaylistview.on({
-                itemtap: {fn: this.onAidSelect, scope: this, single: false}
-            });*/
+            this.assaylistview.on({
+                itemtap: {fn: this.onAssaySelect, scope: this, single: false}
+            });
         }
         this.assaylistview.setTitle(record.get('name'));
         var store=this.assaylistview.getStore();
