@@ -38,16 +38,19 @@ Ext.define('AffiliatedHospital.view.healthwiki.AssayDetail', {
         items: [
             {
                 title: '项目介绍',
+                //itemId:'',
                 //iconCls: 'home',
                 html: 'Home Screen'
             },
             {
                 title: '正常值参考',
+                //itemId:'',
                 //iconCls: 'user',
                 html: 'Contact Screen'
             },
             {
                 title: '临床意义',
+                //itemId:'',
                 //iconCls: 'user',
                 html: 'Contact Screen'
 

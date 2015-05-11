@@ -224,19 +224,22 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         this.assaydetailview.setTitle(record.get('name'));
         this.getNav().push(this.assaydetailview);
         var me=this;
-        /*var successFunc = function (response, action) {
+        var successFunc = function (response, action) {
             var res=JSON.parse(response.responseText);
-            me.aiddetailview.setHtml(res.content);
+            //console.log(res);
+            me.assaydetailview.getInnerAt(0).setHtml(res.info);
+            me.assaydetailview.getInnerAt(1).setHtml(res.normalvalue);
+            me.assaydetailview.getInnerAt(2).setHtml(res.meaning);
         };
         var failFunc = function (response, action) {
             Ext.Msg.alert('获取数据失败', '服务器连接异常，请稍后再试', Ext.emptyFn);
 
         };
-        var url = "hospital/getaiddetailbyid";
+        var url = "hospital/getassaydetailbyid";
         var params = {
             pid:record.get("_id")
         };
-        CommonUtil.ajaxSend(params, url, successFunc, failFunc, 'POST');*/
+        CommonUtil.ajaxSend(params, url, successFunc, failFunc, 'POST');
     },
     onAidSelect:function(list,index,node,record){
 
