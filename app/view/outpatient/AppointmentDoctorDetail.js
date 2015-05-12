@@ -11,16 +11,19 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorDetail', {
         items:[
             {
                 flex:1,
+                itemId:'doctorinfo',
+                scrollable:true,
                 items: [
                     {
                         docked: 'top',
                         xtype: 'titlebar',
                         //height:20,
                         minHeight: '1em',
+                        centered:true,
                         items: [
                             {
                                 xtype: 'label',
-                                html: '<div style="font-size: small;font-weight: bold;">[医生简介]</div>'
+                                html: '<div style="font-size: small;font-weight: bold;text-align: center;">[医生简介]</div>'
                             }
                         ]
                     }
@@ -32,7 +35,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorDetail', {
              style: 'background-color: #5E99CC;'*/
             },
             {
-                flex:5,
+                flex:1.5,
                 items: [
                     {
                         docked: 'top',

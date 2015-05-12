@@ -423,3 +423,7 @@ body.x-desktop {
 	width: 33%;
 	display: inline-block;
 }
+.columnlist2  .x-dataview-item {
+	width: 50%;
+	display: inline-block;
+}

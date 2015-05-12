@@ -6,6 +6,7 @@ Ext.define('AffiliatedHospital.model.outpatient.AppointmentDoctor', {
             'name',
             'time',
             'ysdm',
+            'ksdm',
             'photo',
             'zblb',
             'num',

@@ -148,6 +148,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                          name:$(item).find('ygxm').text(),
                          time:time,
                          ysdm:$(item).find('ysdm').text(),
+                         ksdm:$(item).find('ksdm').text(),
                          zblb:$(item).find('zblb').text(),
                          photo:$(item).find('photo').text()
                      };
@@ -204,12 +205,99 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
     onAppointmentDoctorSelect:function(list, index, node, record){
 
         var nav=this.getNav();
+        var me=this;
         if(!this.doctorDetailView){
             this.doctorDetailView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorDetail');
         }
+        this.doctorDetailView.setTitle(record.get('name'));
         nav.push(this.doctorDetailView);
-        testobj=this;
-        var timestore=this.getReservedoctortimesview().getStore();
+
+        var doctoinforitem=this.doctorDetailView.down('#doctorinfo');
+        Ext.Viewport.mask({ xtype: 'loadmask',
+            message: "加载数据中..." });
+
+
+        var url=Globle_Variable.soapurl;
+        var fields=[
+
+            {name:'ysdm',value:record.get('ysdm')}
+
+        ];
+        var successFunc = function (response, action) {
+
+            Ext.Viewport.unmask();
+            var xml=$.parseXML(response.responseText);
+
+            console.log(xml);
+
+            var doctorinfo=$($.parseXML($(xml).find('of_ysxxResult').text())).find('ysjj').text();
+            var str='<div style="font-size:smaller;color:darkgrey;margin: 5px;">'+doctorinfo+'</div>';
+            doctoinforitem.setHtml(str);
+
+
+        };
+        var failFunc = function (form, action) {
+            Ext.Viewport.unmask();
+            Ext.Msg.alert("提示信息","获取数据失败");
+        };
+        CommonUtil.soapCommon(url,'of_ysxx','n_yy',fields,successFunc,failFunc);
+
+
+
+
+
+
+
+        var fields=[
+
+            {name:'ysdm',value:record.get('ysdm')},
+            {name:'ksdm',value:record.get('ksdm')},
+            {name:'zblb',value:record.get('zblb')},
+            {name:'pbrq',value:record.get('time')}
+
+        ];
+        var successFunc = function (response, action) {
+
+            Ext.Viewport.unmask();
+            var xml=$.parseXML(response.responseText);
+            var resultrows=$($.parseXML($(xml).find('of_pbsjResult').text())).find('yysj_row');
+            var result=[];
+            resultrows.each(function(i,item){
+
+                var data={
+                    pbrq:$(item).find('pbrq').text(),
+                    time:$(item).find('sjjg').text(),
+                    num:$(item).find('hdrs').text()-$(item).find('yyrs').text(),
+                    ksdm:$(item).find('ksdm').text(),
+                    zblb:$(item).find('zblb').text(),
+                    ysdm:$(item).find('ysdm').text()
+                };
+
+                result.push(data);
+            });
+
+            var timestore=me.getReservedoctortimesview().getStore();
+
+            timestore.setData(result);
+
+
+
+
+
+
+        };
+        var failFunc = function (form, action) {
+            Ext.Viewport.unmask();
+            Ext.Msg.alert("提示信息","获取数据失败");
+        };
+        CommonUtil.soapCommon(url,'of_pbsj','n_yy',fields,successFunc,failFunc);
+
+
+
+
+
+        console.log(record);
+        /*var timestore=this.getReservedoctortimesview().getStore();
         timestore.load({
             //define the parameters of the store:
             params: {
@@ -217,7 +305,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             },
             scope: this,
             callback: function (records, operation, success) {}
-        });
+        });*/
 
 
     },

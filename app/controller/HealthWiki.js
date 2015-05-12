@@ -141,10 +141,10 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         var url=Globle_Variable.soapurl;
         var fields=[
             //{name:'mzhm',value:'A003300005409'}
-            {name:'pbrq',value:'2015-05-13'},
-            {name:'ksdm',value:'39'},
-            {name:'zblb',value:0},
-            {name:'ysdm',value:"0"}
+            /*{name:'pbrq',value:'2015-05-15'},
+            {name:'ksdm',value:'38'},
+            {name:'zblb',value:1},*/
+            {name:'ysdm',value:"424"}
 
         ];
         var successFunc = function (response, action) {
@@ -164,7 +164,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         var failFunc = function (form, action) {
             Ext.Msg.alert("提示信息","发布失败");
         };
-        CommonUtil.soapCommon(url,'of_pbxx','n_yy',fields,successFunc,failFunc);
+        CommonUtil.soapCommon(url,'of_ysxx','n_yy',fields,successFunc,failFunc);
 
     },
     onDrugSelect:function(list,index,node,record){
