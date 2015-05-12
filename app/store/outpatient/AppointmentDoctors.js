@@ -3,15 +3,15 @@ Ext.define('AffiliatedHospital.store.outpatient.AppointmentDoctors', {
     config: {
         model: 'AffiliatedHospital.model.outpatient.AppointmentDoctor',
         autoLoad: false,
-        //sorters: '_id',
+        sorters: 'time'//,
         /*grouper: {
             groupFn: function(record) {
-                return record.get('userinfo').sectionname;
+                return record.get('time');
             }
         },*/
-        proxy: {
+        /*proxy: {
             type: 'ajax',
             url: Globle_Variable.serverurl+"hospital/getappointmentcategorydoctors"
-        }
+        }*/
     }
 });

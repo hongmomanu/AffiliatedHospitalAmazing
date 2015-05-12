@@ -134,60 +134,37 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
     },
 
 
-    soapCommon:function(url,funcname,xmlns,fields){
-        var str_head='<?xml version="1.0" encoding="utf-8"?>'+
-            '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">'
-            +'<soap12:Body>';
-
-        var funcname_head='<'+funcname+ ' xmlns="'+xmlns+(fields.length==0?'"/>':'">');
-
-        var content_str='';
-
-        for(var i=0;i<fields.length;i++ ){
-            content_str+='<'+fields[i].name+'>'+fields[i].value+'</'+fields[i].name+'>';
-        }
-
-
-        var funcname_tail=(fields.length==0?'':'</'+funcname+'>');
-
-
-        var str_tail='</soap12:Body></soap12:Envelope>';
-
-
-        var content=str_head+funcname_head+content_str+funcname_tail+str_tail;
-
-        var successFunc = function (form, action) {
-            Ext.Msg.alert("提示信息","网页发布成功");
-        };
-        var failFunc = function (form, action) {
-            Ext.Msg.alert("提示信息","发布失败");
-        };
-        var item={};
-
-        item.url=url;
-
-        item.content=content;
-
-        CommonUtil.ajaxSend(item, 'hospital/sendsoap', successFunc, failFunc, "post");
-
-
-    },
 
     soapTest:function(){
-
-
 
 
         var url=Globle_Variable.soapurl;
         var fields=[
             //{name:'mzhm',value:'A003300005409'}
-        ]
-        this.soapCommon(url,'of_yyks','n_yy',fields);
+            {name:'pbrq',value:'2015-05-13'},
+            {name:'ksdm',value:'39'},
+            {name:'zblb',value:0},
+            {name:'ysdm',value:"0"}
 
+        ];
+        var successFunc = function (response, action) {
 
+            var xml=$.parseXML(response.responseText);
+            console.log(xml)
+            /*var resultrows=$($.parseXML($(xml).find('of_yyks_ptResult').text())).find('yyks_row');
 
+            resultrows.each(function(i,item){
 
+                console.log($(item).find('ksdm').text()+$(item).find('ksmc').text());
 
+            })*/
+
+            Ext.Msg.alert("提示信息","网页发布成功");
+        };
+        var failFunc = function (form, action) {
+            Ext.Msg.alert("提示信息","发布失败");
+        };
+        CommonUtil.soapCommon(url,'of_pbxx','n_yy',fields,successFunc,failFunc);
 
     },
     onDrugSelect:function(list,index,node,record){

@@ -51,6 +51,41 @@ Ext.define('CommonUtil', {
             }
             return valid;
         },
+        soapCommon:function(url,funcname,xmlns,fields,successFunc,failFunc){
+            var str_head='<?xml version="1.0" encoding="utf-8"?>'+
+                '<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">'
+                +'<soap12:Body>';
+
+            var funcname_head='<'+funcname+ ' xmlns="'+xmlns+(fields.length==0?'"/>':'">');
+
+            var content_str='';
+
+            for(var i=0;i<fields.length;i++ ){
+                content_str+='<'+fields[i].name+'>'+fields[i].value+'</'+fields[i].name+'>';
+            }
+
+
+            var funcname_tail=(fields.length==0?'':'</'+funcname+'>');
+
+
+            var str_tail='</soap12:Body></soap12:Envelope>';
+
+
+            var content=str_head+funcname_head+content_str+funcname_tail+str_tail;
+
+
+            var item={};
+
+            item.url=url;
+
+            item.content=content;
+
+            this.ajaxSend(item, 'hospital/sendsoap', successFunc, failFunc, "post");
+
+
+        },
+
+
         ajaxSend: function (params, url, sucFun, failFunc, method) {
             var me = this;
             /*if(!me.loadmask)me.loadmask=new Ext.LoadMask(Ext.getBody(), {msg:"加载中..."});

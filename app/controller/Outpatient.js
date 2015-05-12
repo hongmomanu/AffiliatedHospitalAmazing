@@ -99,7 +99,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         store.load({
             //define the parameters of the store:
             params: {
-                id: record.get("_id")
+                pid: record.get("_id")
             },
 
             scope: this,
@@ -113,21 +113,91 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
     onAppointmentChildSelect:function(list, index, node, record){
         var nav=this.getNav();
-        if(!this.doctorView){
-            this.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList');
+        var me=this;
+        console.log(record);
+        if(record.get("type")==1){
+            if(!this.doctorView){
+                this.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList');
+            }
+
+
+            Ext.Viewport.mask({ xtype: 'loadmask',
+                message: "加载数据中..." });
+
+            var appoint_time=Ext.Date.add(new Date(),Ext.Date.DAY,1);
+            var appoint_time_str=Ext.Date.format(appoint_time,'Y-m-d');
+            var url=Globle_Variable.soapurl;
+            var fields=[
+                //{name:'mzhm',value:'A003300005409'}
+                {name:'pbrq',value:appoint_time_str},
+                {name:'ksdm',value:record.get('deptcode')},
+                {name:'zblb',value:0},
+                {name:'ysdm',value:"0"}
+
+            ];
+            var successFunc = function (response, action) {
+
+                Ext.Viewport.unmask();
+                var xml=$.parseXML(response.responseText);
+                var result=[];
+                var datedata=[{text:'全部日期',value:'all'}];
+                var resultrows=$($.parseXML($(xml).find('of_pbxxResult').text())).find('pbxx_row');
+                 resultrows.each(function(i,item){
+                     var time=Ext.Date.format(new Date($(item).find('gzrq').text()),'Y-m-d');
+                     var data={
+                         name:$(item).find('ygxm').text(),
+                         time:time,
+                         ysdm:$(item).find('ysdm').text(),
+                         zblb:$(item).find('zblb').text(),
+                         photo:$(item).find('photo').text()
+                     };
+
+                     result.push(data);
+                 });
+                var store=me.doctorView.getStore();
+                var dateview=me.doctorView.down('#datedata');
+                store.setData(result);
+
+                store.data.each(function(item){
+                    var data={text:item.get("time"),value:item.get("time")};
+                    if(Ext.Array.every(datedata, function(itemdata){
+                            if(itemdata.text ===item.get("time")){
+                                return false ;
+                            }else {
+                                return true;
+                            }
+                        })){
+                        datedata.push(data);
+                    }
+
+                });
+                dateview.setOptions(datedata);
+
+            };
+            var failFunc = function (form, action) {
+                Ext.Viewport.unmask();
+                Ext.Msg.alert("提示信息","获取数据失败");
+            };
+            CommonUtil.soapCommon(url,'of_pbxx','n_yy',fields,successFunc,failFunc);
+
+
+
+           /* var store=this.doctorView.getStore();
+            store.load({
+                //define the parameters of the store:
+                params: {
+                    pid: record.get("_id")
+                },
+                scope: this,
+                callback: function (records, operation, success) {}
+            });*/
+
+
+            this.doctorView.setTitle(record.get('name'));
+            nav.push(this.doctorView);
+
         }
 
-        var store=this.doctorView.getStore();
-        store.load({
-            //define the parameters of the store:
-            params: {
-                pid: record.get("_id")
-            },
-            scope: this,
-            callback: function (records, operation, success) {}
-        });
-        this.doctorView.setTitle(record.get('name'));
-        nav.push(this.doctorView);
 
     },
 

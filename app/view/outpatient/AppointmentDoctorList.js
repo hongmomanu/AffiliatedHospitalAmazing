@@ -32,24 +32,39 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
             {
                 xtype: 'toolbar',
                 height:25,
-                cls:'nopadding-toolbar',
+                //cls:'nopadding-toolbar',
                 docked: 'top',
                 items: [
                     {
                         xtype: 'selectfield',
-                        width:125,
+                        itemId:'datedata',
+                        listeners : {
+                            change : {// 内容改变
+
+                                fn : function(obj, newValue, oldValue, eOpts) {
+                                    var liststore=obj.up('appointmentdoctorlist').getStore();
+                                    liststore.clearFilter();
+                                    if(newValue!=='all'){
+                                        liststore.filter('time',newValue);
+                                    }
+
+
+                                }
+                            }
+                        },
+                        width:140/*,
                         options: (function(){
                             var data=[{text:'全部日期',value:'all'}];
                             var now=new Date();
-                            for(var i=0;i<10;i++){
+                            for(var i=1;i<11;i++){
                                 var time=Ext.Date.add(now,Ext.Date.DAY,i);
                                 var timestr=Ext.Date.format(time,'Y-m-d');
                                 data.push({text:timestr,value:timestr});
                             }
                             return data;
-                        })()
+                        })()*/
                     },
-                    {
+                    /*{
                         xtype: 'selectfield',
                         width:65,
                         options: [
@@ -57,14 +72,28 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
                             {text:'上午',value:'am'},
                             {text:'下午',value:'pm'}
                         ]
-                    },
+                    },*/
                     {
                         xtype: 'selectfield',
-                        width:95,
+                        width:125,
+                        listeners : {
+                            change : {// 内容改变
+
+                                fn : function(obj, newValue, oldValue, eOpts) {
+                                    var liststore=obj.up('appointmentdoctorlist').getStore();
+                                    liststore.clearFilter();
+                                    if(newValue!=='all'){
+                                        liststore.filter('zblb',newValue);
+                                    }
+
+
+                                }
+                            }
+                        },
                         options: [
-                            {text:'正副主任',value:'all'},
-                            {text:'正主任',value:'m'},
-                            {text:'副主任',value:'a'}
+                            {text:'正副主任',value:"all"},
+                            {text:'正主任',value:"1"},
+                            {text:'副主任',value:"2"}
                         ]
                     }
 
@@ -76,22 +105,25 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
         ],
         itemTpl: [
             '<table width="100%" height="100%"><tr>',
-            '<td width="40%">',
-            '<div class="headshot">{name}',
-            '</div>',
-            '<div>',
-            '{info}',
-            '</div></td>',
 
-            '<td width="35%">',
+            '<td width="50%">',
+
+            '<div>',
+            '<img width="80px" height="80px" src="'+Globle_Variable.websourceurl+'{photo}">',
+            '</div>',
+            '<div class="headshot" >{name}',
+            '</div>',
+            '</td>',
+
+            '<td width="50%">',
             '<div style="text-align: left">',
             '{time}',
             '</div></td>',
 
-            '<td width="25%">',
+            /*'<td width="25%">',
             '<div style="text-align: right;padding: 5px;background-color: #0064a9;color: white;">',
             '{num}',
-            '</div></td>',
+            '</div></td>',*/
 
 
             '</tr></table>'

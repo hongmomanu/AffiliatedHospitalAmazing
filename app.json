@@ -71,6 +71,10 @@
             "x-bootstrap": true
         },
         {
+            "path": "jquery-1.10.2.js",
+            "x-bootstrap": true
+        },
+        {
             "path": "config.js",
             "update": "delta"
         },
@@ -107,6 +111,9 @@
             "update": "delta"
         },{
             "path": "resources/css/main.css",
+            "update": "delta"
+        },{
+            "path": "resources/css/fontawsome/css/font-awesome.min.css",
             "update": "delta"
         }
     ],
