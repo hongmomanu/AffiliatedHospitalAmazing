@@ -3,7 +3,9 @@ Ext.define('AffiliatedHospital.model.outpatient.AppointmentCategoryChild', {
     config: {
         fields: [
             '_id',
-            'name'
+            'name',
+            'deptcode',
+            'type'
         ]
     }
 });
