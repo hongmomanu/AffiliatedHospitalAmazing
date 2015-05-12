@@ -38,14 +38,20 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
                     {
                         xtype: 'selectfield',
                         itemId:'datedata',
+
                         listeners : {
                             change : {// 内容改变
 
                                 fn : function(obj, newValue, oldValue, eOpts) {
                                     var liststore=obj.up('appointmentdoctorlist').getStore();
                                     liststore.clearFilter();
+                                    var typevalue=obj.up('appointmentdoctorlist').down('#type').getValue();
                                     if(newValue!=='all'){
                                         liststore.filter('time',newValue);
+
+                                    }
+                                    if(typevalue!=='all'){
+                                        liststore.filter('zblb',typevalue);
                                     }
 
 
@@ -75,6 +81,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
                     },*/
                     {
                         xtype: 'selectfield',
+                        itemId:'type',
                         width:125,
                         listeners : {
                             change : {// 内容改变
@@ -82,8 +89,16 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
                                 fn : function(obj, newValue, oldValue, eOpts) {
                                     var liststore=obj.up('appointmentdoctorlist').getStore();
                                     liststore.clearFilter();
+
                                     if(newValue!=='all'){
                                         liststore.filter('zblb',newValue);
+
+                                    }
+
+                                    var datedatavalue =obj.up('appointmentdoctorlist').down('#datedata').getValue();
+
+                                    if(datedatavalue!=='all'){
+                                        liststore.filter('time',datedatavalue);
                                     }
 
 
