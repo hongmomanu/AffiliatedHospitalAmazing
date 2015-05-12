@@ -57,7 +57,7 @@ Ext.define('AffiliatedHospital.view.outpatient.Login', {
                                     },
                                     {
                                         xtype: 'textfield',
-                                        name: 'password',
+                                        name: 'cardnum',
                                         label: '社保卡或健康卡卡号',
                                         placeHolder: '请输入卡号',
                                         required: true,

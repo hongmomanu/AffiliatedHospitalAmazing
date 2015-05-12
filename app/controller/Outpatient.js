@@ -25,6 +25,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentCategory',
             'outpatient.AppointmentDoctor',
             'outpatient.ReserveDoctorTime',
+            'outpatient.Login',
             'outpatient.AppointmentCategoryChild'
 
 
@@ -53,6 +54,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             },
             appointmentcategorychildview: {
                 itemtap: 'onAppointmentChildSelect'
+            },
+            loginbtn: {
+                tap: 'loginFunc'
             }
 
         },
@@ -62,6 +66,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             appointmentcategoryview:'main #appointmentcategorylist',
             appointmentdoctorview:'main #appointmentdoctorlist',
             reservedoctortimesview:'main #reservedoctortimes',
+            loginbtn:'loginform #userlogin',
             appointmentcategorychildview:'main #appointmentcategorychildlist'
 
 
@@ -92,6 +97,16 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 */
 
 
+    },
+
+    loginFunc:function(btn){
+
+        var formpanel=btn.up('formpanel');
+        CommonUtil.addMessage();
+        var me=this;
+        var valid = CommonUtil.valid('AffiliatedHospital.model.outpatient.Login', formpanel);
+
+        //alert(1);
     },
 
     onAppointmentSelect:function(list, index, node, record){
