@@ -35,7 +35,8 @@ Ext.define('AffiliatedHospital.controller.Main', {
         control: {
             nav: {
                 initialize: 'initRender',
-                returnhomemenu:'returnhomemenuFunc'
+                returnhomemenu:'returnhomemenuFunc',
+                loginmenu:'loginShow'
             },
             installpatientbtn:{
                 tap:'installpatient'
@@ -70,6 +71,19 @@ Ext.define('AffiliatedHospital.controller.Main', {
         Ext.Viewport.hideMenu('right');
         var nav=this.getNav();
         nav.pop(nav.getInnerItems().length - 1);
+
+    },
+    loginShow:function(){
+
+        Ext.Viewport.hideMenu('right');
+
+        if(!this.loginView){
+            this.loginView=Ext.create('AffiliatedHospital.view.outpatient.Login');
+            //console.log(this.loginView);
+        }
+
+        this.getNav().push(this.loginView);
+        //this.outpatientReserveShow()
 
     },
     outpatientReserveShow:function(){
@@ -182,6 +196,8 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
     },
     initRender: function () {
+
+
 
         // Application menu
 

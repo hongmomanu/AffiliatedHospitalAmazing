@@ -18,6 +18,22 @@ Ext.define('AffiliatedHospital.view.menu.MainMenu', {
             {
                 text: '用户登录',
                 iconCls: 'user',
+                hidden:Globle_Variable.user,
+                scope: this,
+                handler: function() {
+
+                    var mainview=Ext.Viewport.down('main');
+                    mainview.fireEvent('loginmenu', mainview);
+
+
+                    /* this.container.setActiveItem(0);
+                     this.getContactsStore().clearFilter();*/
+                }
+            },
+            {
+                text: '用户退出',
+                iconCls: 'user',
+                hidden:!Globle_Variable.user,
                 scope: this,
                 handler: function() {
                     Ext.Viewport.hideMenu('right');
@@ -27,7 +43,9 @@ Ext.define('AffiliatedHospital.view.menu.MainMenu', {
                     /* this.container.setActiveItem(0);
                      this.getContactsStore().clearFilter();*/
                 }
-            }, {
+            },
+
+            {
                 xtype: 'button',
                 ui: 'plain',
                 text: '______',

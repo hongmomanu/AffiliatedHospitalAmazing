@@ -25,65 +25,7 @@ Ext.define('AffiliatedHospital.view.Main', {
             items : [
 
 
-               /* Ext.create('Ext.ux.ActionOverFlowMenuButton', {
-                    docked: 'right',
-                    align:'right',
-                    iconCls:'settings',
-                    border:0,
-                    menuItems: [
 
-                        {
-                        text: '用户登录',
-                        iconCls: 'user',
-                        scope: this,
-                        handler: function() {
-                           Ext.Viewport.hideMenu('right');
-
-                        }
-                    }, {
-                            xtype: 'button',
-                            ui: 'plain',
-                            text: '______',
-                            disabled: true,
-                            cls: 'separator'
-                        },{
-                        text: '返回首页',
-                        iconCls: 'home',
-                        scope: this,
-                        handler: function(item) {
-
-                           Ext.Viewport.hideMenu('right');
-                            //var mainview=this.up('main');
-
-                            testobj=item;
-
-                        }
-                    }, {
-                        text: '意见反馈',
-                        iconCls: 'reply',
-                        scope: this,
-                        handler: function() {
-                            Ext.Viewport.hideMenu('right');
-
-                        }
-                    }, {
-                        text: '软件分享',
-                        iconCls: 'organize',
-                        scope: this,
-                        handler: function() {
-                            Ext.Viewport.hideMenu('right');
-
-                        }
-                    }, {
-                        text: '关于我们',
-                        iconCls: 'info',
-                        scope: this,
-                        handler: function() {
-                            Ext.Viewport.hideMenu('right');
-
-                        }
-                    }]
-                })*/
                 {
                     xtype:'mainmenu',
                     iconCls:'settings'

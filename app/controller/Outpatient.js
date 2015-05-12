@@ -13,6 +13,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentDoctorList',
             'outpatient.AppointmentDoctorDetail',
             'outpatient.ReserveDoctorTimes',
+            'outpatient.Login',
             'outpatient.ReserveViewLayout'
         ],
         requires: [
@@ -280,11 +281,6 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
             timestore.setData(result);
 
-
-
-
-
-
         };
         var failFunc = function (form, action) {
             Ext.Viewport.unmask();
@@ -294,9 +290,6 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
 
 
-
-
-        console.log(record);
         /*var timestore=this.getReservedoctortimesview().getStore();
         timestore.load({
             //define the parameters of the store:
@@ -312,7 +305,8 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
     onAppointmentTimeSelect:function(list, index, node, record){
 
-        alert(1);
+        //alert(1);
+
 
        /* var nav=this.getNav();
         if(!this.doctorDetailView){
