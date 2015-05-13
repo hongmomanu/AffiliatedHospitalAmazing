@@ -145,16 +145,16 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
         itemTpl: [
             '<table width="100%" height="100%"><tr>',
 
-            '<td width="50%">',
+            '<td width="40%">',
 
-            '<div>',
-            '<img width="80px" height="80px" src="'+Globle_Variable.websourceurl+'{photo}">',
+            '<div style="text-align: center;">',
+            '<img width="80px" height="80px" onError="this.src=\'resources/icons/noperson.gif\';"  src="'+Globle_Variable.websourceurl+'{photo}">',
             '</div>',
-            '<div class="headshot" >{name}',
+            '<div class="headshot" style="text-align: center;">{name}',
             '</div>',
             '</td>',
 
-            '<td width="50%">',
+            '<td width="60%">',
             '<div style="text-align: left">',
             '{time}',
             '<tpl if="zblb == 1">',
