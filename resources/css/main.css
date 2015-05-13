@@ -49,12 +49,15 @@ body.x-desktop {
 .home .x-button .x-button-label {
 	font-weight:normal;
 	color:#3F444A;
+	text-align: left;
 	font-size:.7em;
 	margin-top:.25em;
 }
 .home .x-button .x-button-icon {
 	font-size:1.8em;
+	text-align: center;
 	width: 64px;
+
 	height: 64px;
 }
 /*#endregion*/
@@ -426,4 +429,7 @@ body.x-desktop {
 .columnlist2  .x-dataview-item {
 	width: 50%;
 	display: inline-block;
+}
+.x-tab .x-button-icon.fa::before, .x-button .x-button-icon.fa::before{
+	font-family:FontAwesome;
 }

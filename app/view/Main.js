@@ -98,14 +98,16 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             xtype : 'button',
                                             text : '门诊预约',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/muru.png",
+                                            //icon : "resources/icons/muru.png",
+                                            iconCls:'fa fa-cloud',
                                             itemId:'outpatientreserve'
                                         }, {
                                             xtype : 'button',
                                             text : '智能分诊',
                                             itemId:'possibleill',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/weinai.png"
+                                            iconCls : "fa fa-bed"
+                                            //icon : "resources/icons/weinai.png"
                                         },/* {
                                             xtype : 'button',
                                             text : '取报告单',
@@ -118,7 +120,8 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '预约查询',
                                             iconAlign : 'top',
                                             itemId:'datequery',
-                                            icon : "resources/icons/niaobu.png",
+                                            iconCls:'fa fa-search fa-5x',
+                                            //icon : "resources/icons/niaobu.png",
                                             handler : function() {
                                             }
                                         }]
@@ -131,14 +134,16 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             xtype : 'button',
                                             text : '消费记录',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/tiwen.png",
+                                            //icon : "resources/icons/tiwen.png",
+                                            iconCls : "fa fa-jpy",
                                             handler : function() {
                                             }
                                         }, {
                                             xtype : 'button',
                                             text : '诊疗记录',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/weinai.png",
+                                            //icon : "resources/icons/weinai.png",
+                                            iconCls : "fa fa-hospital-o",
                                             handler : function() {
                                             }
                                         }, {
@@ -146,7 +151,8 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '健康百科',
                                             itemId:'healthwiki',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/niaobu.png"
+                                            iconCls : "fa fa-book"
+                                            //icon : "resources/icons/niaobu.png"
 
                                         }]
                                     }, {
@@ -158,21 +164,24 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             xtype : 'button',
                                             text : '医院导航',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/muru.png",
+                                            //icon : "resources/icons/muru.png",
+                                            iconCls : "fa fa-car",
                                             handler : function() {
                                             }
                                         }, {
                                             xtype : 'button',
                                             text : '医院动态',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/shuijiao.png",
+                                            //icon : "resources/icons/shuijiao.png",
+                                            iconCls : "fa fa-hacker-news",
                                             handler : function() {
                                             }
                                         }, {
                                             xtype : 'button',
                                             text : '专家介绍',
                                             iconAlign : 'top',
-                                            icon : "resources/icons/about.png",
+                                            //icon : "resources/icons/about.png",
+                                            iconCls : "fa fa-user",
                                             handler : function() {
                                             }
 

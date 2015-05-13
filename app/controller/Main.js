@@ -153,10 +153,14 @@ Ext.define('AffiliatedHospital.controller.Main', {
             var fields=[
                 {name:'mzhm',value:Globle_Variable.user.mzhm}
             ];
+
+            Ext.Viewport.mask({ xtype: 'loadmask',
+                message: "加载数据中..." });
+
             var successFunc = function (response, action) {
 
                 var xml=$.parseXML(response.responseText);
-                console.log(xml);
+                //console.log(xml);
                 var data_arr=[];
                 try{
                     var resultrows=$($.parseXML($(xml).find('of_yycxResult').text())).find('d_yycx_row');
@@ -179,7 +183,8 @@ Ext.define('AffiliatedHospital.controller.Main', {
                 }catch(e){
 
                 }finally{
-                    console.log(data_arr)
+                    //console.log(data_arr)
+                    Ext.Viewport.unmask();
                     store.setData(data_arr);
                 }
 
