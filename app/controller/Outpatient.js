@@ -13,6 +13,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentDoctorList',
             'outpatient.AppointmentDoctorDetail',
             'outpatient.Dateform',
+            'outpatient.UserDateInfoList',
             'outpatient.ReserveDoctorTimes',
             'outpatient.Login',
             'outpatient.ReserveViewLayout'
@@ -25,6 +26,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
             'outpatient.AppointmentCategory',
             'outpatient.AppointmentDoctor',
+            'outpatient.UserDateInfo',
             'outpatient.ReserveDoctorTime',
             'outpatient.Login',
             'outpatient.DateForm',
@@ -36,6 +38,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
             'outpatient.AppointmentCategorys',
             'outpatient.AppointmentDoctors',
+            'outpatient.UserDateInfos',
             'outpatient.ReserveDoctorTimes',
             'outpatient.AppointmentCategoryChildren'
 

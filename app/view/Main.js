@@ -106,10 +106,18 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             itemId:'possibleill',
                                             iconAlign : 'top',
                                             icon : "resources/icons/weinai.png"
-                                        }, {
+                                        },/* {
                                             xtype : 'button',
                                             text : '取报告单',
                                             iconAlign : 'top',
+                                            icon : "resources/icons/niaobu.png",
+                                            handler : function() {
+                                            }
+                                        },*/ {
+                                            xtype : 'button',
+                                            text : '预约查询',
+                                            iconAlign : 'top',
+                                            itemId:'datequery',
                                             icon : "resources/icons/niaobu.png",
                                             handler : function() {
                                             }

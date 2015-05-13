@@ -17,6 +17,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
         //refreshHeightOnUpdate :false,
         scrollToTopOnRefresh :true,
         title:'Doctor',
+        emptyText: '<div>无相关内容</div>',
         //grouped:true,
         //indexBar:true,
         //store: 'AppointmentDoctors',

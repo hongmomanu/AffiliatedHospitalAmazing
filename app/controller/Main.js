@@ -51,6 +51,9 @@ Ext.define('AffiliatedHospital.controller.Main', {
             possibleillbtn:{
                 tap:'possibleIllShow'
             },
+            datequerybtn:{
+                tap:'datequeryShow'
+            },
             healthwikibtn:{
                 tap:'healthwikiShow'
             }
@@ -63,6 +66,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
             homepage:'main #homepage',
             outpatientreservebtn:'main #outpatientreserve',
             possibleillbtn:'main #possibleill',
+            datequerybtn:'main #datequery',
             healthwikibtn:'main #healthwiki',
             installpatientbtn:'main #installpatient',
             installdoctorbtn:'main #installdoctor'
@@ -129,6 +133,69 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
 
         //var reserveView=Ext.create('AffiliatedHospital.view.outpatient.ReserveView');
+
+    },
+    datequeryShow:function(){
+
+        if(!Globle_Variable.user){
+            Ext.Msg.alert("提示信息","你还未登录!");
+
+        }else{
+            if(!this.userdateinfoView){
+                this.userdateinfoView=Ext.create('AffiliatedHospital.view.outpatient.UserDateInfoList');
+            }
+
+            this.getNav().push(this.userdateinfoView);
+
+            var store=this.userdateinfoView.getStore();
+
+            var url=Globle_Variable.soapurl;
+            var fields=[
+                {name:'mzhm',value:Globle_Variable.user.mzhm}
+            ];
+            var successFunc = function (response, action) {
+
+                var xml=$.parseXML(response.responseText);
+                console.log(xml);
+                var data_arr=[];
+                try{
+                    var resultrows=$($.parseXML($(xml).find('of_yycxResult').text())).find('d_yycx_row');
+
+
+                    resultrows.each(function(i,item){
+                        var time=new Date($(item).find('yyrq').text());
+                        var time2=Ext.Date.add(time,Ext.Date.HOUR,1);
+                        //var hour=time.getHours();
+                        var item_data={
+                            yyrq:Ext.Date.format(time,'Y-m-d'),
+                            ysmc:$(item).find('ysmc').text(),
+                            yytime:Ext.Date.format(time,'h:i')+ " -- "+Ext.Date.format(time2,'h:i')
+
+                        };
+
+                        data_arr.push(item_data);
+
+                    })
+                }catch(e){
+
+                }finally{
+                    console.log(data_arr)
+                    store.setData(data_arr);
+                }
+
+
+
+            };
+            var failFunc = function (form, action) {
+                Ext.Msg.alert("提示信息","查询失败");
+            };
+            CommonUtil.soapCommon(url,'of_yycx','n_yy',fields,successFunc,failFunc);
+
+        }
+
+
+
+
 
     },
     healthwikiShow:function(){
