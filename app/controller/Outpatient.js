@@ -106,6 +106,64 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         var me=this;
         var valid = CommonUtil.valid('AffiliatedHospital.model.outpatient.Login', formpanel);
 
+        if(valid){
+
+            Ext.Viewport.mask({ xtype: 'loadmask',
+                message: "加载数据中..." });
+
+
+            var url=Globle_Variable.soapurl;
+            var fields=[
+
+                {name:'mzhm',value:formpanel.getValues().cardnum.trim()}
+
+            ];
+            var successFunc = function (response, action) {
+
+                Ext.Viewport.unmask();
+                var xml=$.parseXML(response.responseText);
+
+                console.log(xml);
+                try{
+                    var userinfo=$($.parseXML($(xml).find('of_brxxResult').text())).find('brxx_row');
+                    var brxm=userinfo.find('brxm').text();
+                    var bird=userinfo.find('bird').text();
+                    var mzhm=userinfo.find('mzhm').text();
+                    var sfzh=userinfo.find('sfzh').text();
+                    if(brxm.trim()===formpanel.getValues().name.trim()){
+                        var user={
+                            brxm:brxm,
+                            bird:bird,
+                            mzhm:mzhm,
+                            sfzh:sfzh
+                        };
+                        localStorage.user=JSON.stringify(user);
+                        Ext.Msg.alert("提示信息","登录成功!",function(){
+                            window.location.reload();
+                        });
+                    }else{
+
+                        Ext.Msg.alert("提示信息","姓名与卡号不符!");
+                    }
+                    console.log(brxm)
+                }catch(e){
+                    Ext.Msg.alert("提示信息","卡号错误!");
+
+                }
+
+
+
+            };
+            var failFunc = function (form, action) {
+                Ext.Viewport.unmask();
+                Ext.Msg.alert("提示信息","获取数据失败");
+            };
+            CommonUtil.soapCommon(url,'of_brxx','n_yy',fields,successFunc,failFunc);
+
+
+
+        }
+
         //alert(1);
     },
 
@@ -246,8 +304,6 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
             Ext.Viewport.unmask();
             var xml=$.parseXML(response.responseText);
-
-            console.log(xml);
 
             var doctorinfo=$($.parseXML($(xml).find('of_ysxxResult').text())).find('ysjj').text();
             var str='<div style="font-size:smaller;color:darkgrey;margin: 5px;">'+doctorinfo+'</div>';
