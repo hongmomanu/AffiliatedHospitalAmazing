@@ -19,6 +19,7 @@ Ext.define('AffiliatedHospital.view.menu.MainMenu', {
                 text: '用户登录',
                 iconCls: 'user',
                 hidden:Globle_Variable.user,
+                itemId:'loginmenu',
                 scope: this,
                 handler: function() {
 
@@ -26,22 +27,18 @@ Ext.define('AffiliatedHospital.view.menu.MainMenu', {
                     mainview.fireEvent('loginmenu', mainview);
 
 
-                    /* this.container.setActiveItem(0);
-                     this.getContactsStore().clearFilter();*/
+
                 }
             },
             {
                 text: '用户退出',
+                itemId:'logoutmenu',
                 iconCls: 'user',
                 hidden:!Globle_Variable.user,
                 scope: this,
                 handler: function() {
-                    Ext.Viewport.hideMenu('right');
-
-
-
-                    /* this.container.setActiveItem(0);
-                     this.getContactsStore().clearFilter();*/
+                    var mainview=Ext.Viewport.down('main');
+                    mainview.fireEvent('logoutmenu', mainview);
                 }
             },
 

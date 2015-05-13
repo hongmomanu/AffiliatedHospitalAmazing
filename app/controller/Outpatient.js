@@ -123,7 +123,6 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                 Ext.Viewport.unmask();
                 var xml=$.parseXML(response.responseText);
 
-                console.log(xml);
                 try{
                     var userinfo=$($.parseXML($(xml).find('of_brxxResult').text())).find('brxx_row');
                     var brxm=userinfo.find('brxm').text();
@@ -138,14 +137,22 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                             sfzh:sfzh
                         };
                         localStorage.user=JSON.stringify(user);
+                        Globle_Variable.user=user;
+                        var menu=Ext.Viewport.down('mainmenu');
+                        menu.getMenuItems()[0].hidden=true;
+                        menu.getMenuItems()[1].hidden=false;
+
                         Ext.Msg.alert("提示信息","登录成功!",function(){
-                            window.location.reload();
+
+                            me.getNav().pop();
+
+
                         });
                     }else{
 
                         Ext.Msg.alert("提示信息","姓名与卡号不符!");
                     }
-                    console.log(brxm)
+
                 }catch(e){
                     Ext.Msg.alert("提示信息","卡号错误!");
 
