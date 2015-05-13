@@ -150,7 +150,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         var successFunc = function (response, action) {
 
             var xml=$.parseXML(response.responseText);
-            console.log(xml)
+            console.log(xml);
             /*var resultrows=$($.parseXML($(xml).find('of_yyks_ptResult').text())).find('yyks_row');
 
             resultrows.each(function(i,item){
