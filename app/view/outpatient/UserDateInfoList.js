@@ -38,6 +38,9 @@ Ext.define('AffiliatedHospital.view.outpatient.UserDateInfoList', {
             '</div>',
             '<div class="headshot" >{ysmc}',
             '</div>',
+            '<div style="font-size: x-small;color:#122D3A">',
+            '({ksmc})',
+            '</div>',
             '</td>',
 
             '<td width="60%">',

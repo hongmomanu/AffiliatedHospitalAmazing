@@ -173,6 +173,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
                         var item_data={
                             yyrq:Ext.Date.format(time,'Y-m-d'),
                             ysmc:$(item).find('ysmc').text(),
+                            ksmc:$(item).find('ksmc').text(),
                             yytime:Ext.Date.format(time,'h:i')+ " -- "+Ext.Date.format(time2,'h:i')
 
                         };
