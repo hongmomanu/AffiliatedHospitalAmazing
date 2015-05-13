@@ -446,10 +446,12 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                 //console.log(this.loginView);
             }
 
+            var titleitem=this.doctorDetailView.down('#datetimetitle');
+
             var formdata={
 
                 yyzj:this.doctorDetailView.getTitle(),
-                yyrq:record.get('time'),
+                yyrq:$(titleitem.getHtml()).text()+" "+record.get('time'),
                 yylxdh:Globle_Variable.user.jtdh,
                 yylxrm:Globle_Variable.user.brxm,
                 brid:Globle_Variable.user.brid,
@@ -458,7 +460,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                 zblb:record.get('zblb')
             };
             var form=this.dateformView.down('formpanel');
-            testobj=form;
+
             form.setValues(formdata);
 
             this.getNav().push(this.dateformView);
