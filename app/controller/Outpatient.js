@@ -126,14 +126,16 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                 try{
                     var userinfo=$($.parseXML($(xml).find('of_brxxResult').text())).find('brxx_row');
                     var brxm=userinfo.find('brxm').text();
-                    var bird=userinfo.find('bird').text();
+                    var brid=userinfo.find('brid').text();
                     var mzhm=userinfo.find('mzhm').text();
                     var sfzh=userinfo.find('sfzh').text();
+                    var jtdh=userinfo.find('jtdh').text();
                     if(brxm.trim()===formpanel.getValues().name.trim()){
                         var user={
                             brxm:brxm,
-                            bird:bird,
+                            brid:brid,
                             mzhm:mzhm,
+                            jtdh:jtdh,
                             sfzh:sfzh
                         };
                         localStorage.user=JSON.stringify(user);
@@ -195,7 +197,6 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
     onAppointmentChildSelect:function(list, index, node, record){
         var nav=this.getNav();
         var me=this;
-        console.log(record);
         if(record.get("type")==1){
             if(!this.doctorView){
                 this.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList');
@@ -385,6 +386,17 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
     },
 
     onAppointmentTimeSelect:function(list, index, node, record){
+
+        if(Globle_Variable.user){
+
+
+
+
+        }else{
+
+            var mainCotroller=this.getApplication().getController('Main');
+            mainCotroller.loginShow();
+        }
 
         //alert(1);
 
