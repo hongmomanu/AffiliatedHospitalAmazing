@@ -42,7 +42,8 @@ Ext.define('AffiliatedHospital.view.outpatient.Login', {
                                 //centered: true,
                                 instructions: '请填写信息',
                                 defaults: {
-                                    labelWidth: '150px'
+                                    labelAlign:'top'/*,
+                                    labelWidth: '150px'*/
                                 },
                                 items: [
                                     {
@@ -52,8 +53,7 @@ Ext.define('AffiliatedHospital.view.outpatient.Login', {
                                         label: '姓名',
                                         placeHolder: '请输入姓名',
                                         required: true,
-                                        clearIcon: true,
-                                        labelAlign: 'left'
+                                        clearIcon: true
                                     },
                                     {
                                         xtype: 'textfield',

@@ -173,6 +173,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                  });
                 var store=me.doctorView.getStore();
                 var dateview=me.doctorView.down('#datedata');
+                var timetypeview=me.doctorView.down('#timetype');
+                timetypeview.reset();
+                store.clearFilter();
                 store.setData(result);
 
                 store.data.each(function(item){

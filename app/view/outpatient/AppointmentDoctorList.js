@@ -45,7 +45,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
                                 fn : function(obj, newValue, oldValue, eOpts) {
                                     var liststore=obj.up('appointmentdoctorlist').getStore();
                                     liststore.clearFilter();
-                                    var typevalue=obj.up('appointmentdoctorlist').down('#type').getValue();
+                                    var typevalue=obj.up('appointmentdoctorlist').down('#timetype').getValue();
                                     if(newValue!=='all'){
                                         liststore.filter('time',newValue);
 
@@ -70,16 +70,39 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
                             return data;
                         })()*/
                     },
-                    /*{
-                        xtype: 'selectfield',
-                        width:65,
-                        options: [
-                            {text:'全天',value:'day'},
-                            {text:'上午',value:'am'},
-                            {text:'下午',value:'pm'}
-                        ]
-                    },*/
                     {
+                        xtype: 'selectfield',
+                        width:90,
+                        itemId:'timetype',
+                        listeners : {
+                            change : {// 内容改变
+
+                                fn : function(obj, newValue, oldValue, eOpts) {
+                                    var liststore=obj.up('appointmentdoctorlist').getStore();
+                                    liststore.clearFilter();
+
+                                    if(newValue!=='all'){
+                                        liststore.filter('zblb',newValue);
+
+                                    }
+
+                                    var datedatavalue =obj.up('appointmentdoctorlist').down('#datedata').getValue();
+
+                                    if(datedatavalue!=='all'){
+                                        liststore.filter('time',datedatavalue);
+                                    }
+
+
+                                }
+                            }
+                        },
+                        options: [
+                            {text:'全天',value:'all'},
+                            {text:'上午',value:'1'},
+                            {text:'下午',value:'2'}
+                        ]
+                    }
+                    /*{
                         xtype: 'selectfield',
                         itemId:'type',
                         width:125,
@@ -110,7 +133,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
                             {text:'正主任',value:"1"},
                             {text:'副主任',value:"2"}
                         ]
-                    }
+                    }*/
 
 
 
@@ -133,6 +156,11 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorList', {
             '<td width="50%">',
             '<div style="text-align: left">',
             '{time}',
+            '<tpl if="zblb == 1">',
+            '<p>上午</p>',
+            '<tpl else>',
+            '<p>下午</p>',
+            '</tpl>',
             '</div></td>',
 
             /*'<td width="25%">',
