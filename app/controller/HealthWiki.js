@@ -164,7 +164,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         var failFunc = function (form, action) {
             Ext.Msg.alert("提示信息","发布失败");
         };
-        CommonUtil.soapCommon(url,'of_brxx','n_yy',fields,successFunc,failFunc);
+        CommonUtil.soapCommon(url,'of_yycx','n_yy',fields,successFunc,failFunc);
 
     },
     onDrugSelect:function(list,index,node,record){

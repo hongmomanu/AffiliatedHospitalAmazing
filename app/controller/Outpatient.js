@@ -187,30 +187,48 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         CommonUtil.addMessage();
         var me=this;
         var valid = CommonUtil.valid('AffiliatedHospital.model.outpatient.DateForm', formpanel);
-
+        console.log(formpanel.getValues())
         if(valid){
 
-            /*Ext.Viewport.mask({ xtype: 'loadmask',
+            Ext.Viewport.mask({ xtype: 'loadmask',
                 message: "加载数据中..." });
 
 
             var url=Globle_Variable.soapurl;
             var fields=[
 
-                {name:'mzhm',value:formpanel.getValues().cardnum.trim()}
+                {name:'yyrq',value:formpanel.getValues().yyrq.split("---")[0].trim()+":10"},
+                {name:'zblb',value:formpanel.getValues().zblb},
+                {name:'ksdm',value:formpanel.getValues().ksdm},
+                {name:'ysdm',value:formpanel.getValues().ysdm},
+                {name:'brid',value:formpanel.getValues().brid},
+                {name:'yylxrm',value:formpanel.getValues().yylxrm},
+                {name:'yylxdh',value:formpanel.getValues().yylxdh}
 
             ];
             var successFunc = function (response, action) {
 
                 Ext.Viewport.unmask();
+
                 var xml=$.parseXML(response.responseText);
+
+                var result=$(xml).find('of_yydjResult').text();
+
+                Ext.Msg.alert("提示信息",result,function(){
+
+                    var mainCotroller=me.getApplication().getController('Main');
+                    mainCotroller.returnhomemenuFunc();
+
+                });
+
+                //console.log(xml);
 
             };
             var failFunc = function (form, action) {
                 Ext.Viewport.unmask();
                 Ext.Msg.alert("提示信息","获取数据失败");
             };
-            CommonUtil.soapCommon(url,'of_brxx','n_yy',fields,successFunc,failFunc);*/
+            CommonUtil.soapCommon(url,'of_yydj','n_yy',fields,successFunc,failFunc);
 
 
 
