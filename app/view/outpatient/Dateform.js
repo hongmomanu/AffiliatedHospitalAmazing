@@ -39,7 +39,7 @@ Ext.define('AffiliatedHospital.view.outpatient.Dateform', {
                             {
                                 xtype: 'fieldset',
                                 //centered: true,
-                                instructions: '请填写信息',
+                                //instructions: '请填写信息',
                                 defaults: {
                                     labelAlign:'top'/*,
                                     labelWidth: '150px'*/
@@ -90,21 +90,36 @@ Ext.define('AffiliatedHospital.view.outpatient.Dateform', {
                                         //placeHolder: '请输入联系方式',
                                         required: true,
                                         clearIcon: true
+                                    },
+                                    {
+                                        xtype: 'textfield',
+                                        name: 'ysdm',
+                                        label: 'hide',
+                                        hidden:true
+                                    },
+                                    {
+                                        xtype: 'textfield',
+                                        name: 'ksdm',
+                                        label: 'hide',
+                                        hidden:true
+                                    },
+                                    {
+                                        xtype: 'textfield',
+                                        name: 'zblb',
+                                        label: 'hide',
+                                        hidden:true
                                     }
                                 ]
                             }
                             ,
                             {
-                                xtype: 'spacer'
-                            },
-                            {
                                 xtype: 'button',
                                 margin:15,
                                 width:'90%',
 
-                                text: '登录',
+                                text: '提交',
                                 ui:'confirm',
-                                itemId: 'userlogin'
+                                itemId: 'datesend'
                             }
 
                         ]

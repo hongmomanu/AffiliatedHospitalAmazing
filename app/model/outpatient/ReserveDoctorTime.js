@@ -4,6 +4,10 @@ Ext.define('AffiliatedHospital.model.outpatient.ReserveDoctorTime', {
         fields: [
             '_id',
             'num',
+            'ysdm',
+            'zblb',
+            'ksdm',
+            'pbrq',
             'time'
 
         ]

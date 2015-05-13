@@ -49,6 +49,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentDoctorDetail', {
                             {
                                 xtype: 'label',
                                 centered:true,
+                                itemId:'datetimetitle',
                                 align: 'center',
                                 html: '<div style="font-size: small; font-weight: bold;text-align: center">2015-12-20</div>'
                             }

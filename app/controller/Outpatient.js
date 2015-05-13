@@ -12,6 +12,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentCategoryChildList',
             'outpatient.AppointmentDoctorList',
             'outpatient.AppointmentDoctorDetail',
+            'outpatient.Dateform',
             'outpatient.ReserveDoctorTimes',
             'outpatient.Login',
             'outpatient.ReserveViewLayout'
@@ -26,6 +27,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentDoctor',
             'outpatient.ReserveDoctorTime',
             'outpatient.Login',
+            'outpatient.DateForm',
             'outpatient.AppointmentCategoryChild'
 
 
@@ -57,6 +59,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             },
             loginbtn: {
                 tap: 'loginFunc'
+            },
+            datesendbtn: {
+                tap: 'datesendFunc'
             }
 
         },
@@ -67,6 +72,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             appointmentdoctorview:'main #appointmentdoctorlist',
             reservedoctortimesview:'main #reservedoctortimes',
             loginbtn:'loginform #userlogin',
+            datesendbtn:'dateform #datesend',
             appointmentcategorychildview:'main #appointmentcategorychildlist'
 
 
@@ -174,6 +180,44 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         }
 
         //alert(1);
+    },
+
+    datesendFunc:function(btn){
+        var formpanel=btn.up('formpanel');
+        CommonUtil.addMessage();
+        var me=this;
+        var valid = CommonUtil.valid('AffiliatedHospital.model.outpatient.DateForm', formpanel);
+
+        if(valid){
+
+            /*Ext.Viewport.mask({ xtype: 'loadmask',
+                message: "加载数据中..." });
+
+
+            var url=Globle_Variable.soapurl;
+            var fields=[
+
+                {name:'mzhm',value:formpanel.getValues().cardnum.trim()}
+
+            ];
+            var successFunc = function (response, action) {
+
+                Ext.Viewport.unmask();
+                var xml=$.parseXML(response.responseText);
+
+            };
+            var failFunc = function (form, action) {
+                Ext.Viewport.unmask();
+                Ext.Msg.alert("提示信息","获取数据失败");
+            };
+            CommonUtil.soapCommon(url,'of_brxx','n_yy',fields,successFunc,failFunc);*/
+
+
+
+        }
+
+
+
     },
 
     onAppointmentSelect:function(list, index, node, record){
@@ -298,6 +342,12 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         nav.push(this.doctorDetailView);
 
         var doctoinforitem=this.doctorDetailView.down('#doctorinfo');
+
+        var datetimetitle=this.doctorDetailView.down('#datetimetitle');
+        var str='<div style="font-size: small; font-weight: bold;text-align: center">'+record.get('time')+'</div>'
+        datetimetitle.setHtml(str);
+
+
         Ext.Viewport.mask({ xtype: 'loadmask',
             message: "加载数据中..." });
 
@@ -387,8 +437,31 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
     onAppointmentTimeSelect:function(list, index, node, record){
 
+        console.log(record);
+
         if(Globle_Variable.user){
 
+            if(!this.dateformView){
+                this.dateformView=Ext.create('AffiliatedHospital.view.outpatient.Dateform');
+                //console.log(this.loginView);
+            }
+
+            var formdata={
+
+                yyzj:this.doctorDetailView.getTitle(),
+                yyrq:record.get('time'),
+                yylxdh:Globle_Variable.user.jtdh,
+                yylxrm:Globle_Variable.user.brxm,
+                brid:Globle_Variable.user.brid,
+                ysdm:record.get('ysdm'),
+                ksdm: record.get('ksdm'),
+                zblb:record.get('zblb')
+            };
+            var form=this.dateformView.down('formpanel');
+            testobj=form;
+            form.setValues(formdata);
+
+            this.getNav().push(this.dateformView);
 
 
 
