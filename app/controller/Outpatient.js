@@ -13,6 +13,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentDoctorList',
             'outpatient.AppointmentUsualList',
             'outpatient.AppointmentDoctorDetail',
+            'outpatient.AppointmentUsualDetail',
             'outpatient.Dateform',
             'outpatient.UserDateInfoList',
             'outpatient.ReserveDoctorTimes',
@@ -418,7 +419,18 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
     onAppointmentUsualSelect:function(list,index,node,record){
 
-        alert("hello");
+        var nav=this.getNav();
+        var me=this;
+        if(!this.usualDetailView){
+            this.usualDetailView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentUsualDetail');
+        }
+        this.usualDetailView.setTitle(record.get('name'));
+        nav.push(this.usualDetailView);
+
+
+        var datetimetitle=this.usualDetailView.down('#datetimetitle');
+        var str='<div style="font-size: small; font-weight: bold;text-align: center">'+record.get('time')+'</div>'
+        datetimetitle.setHtml(str);
 
     },
     onAppointmentDoctorSelect:function(list, index, node, record){
