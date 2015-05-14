@@ -7,12 +7,10 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentUsualDetail', {
         fullscreen: true,
 
         title:' ',
-        layout:'vbox',
+        layout:'fit',
         items:[
 
-            {
-                //flex:1.5,
-                items: [
+
                     {
                         docked: 'top',
                         xtype: 'titlebar',
@@ -32,14 +30,11 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentUsualDetail', {
                         ]
                     },{
 
-                        xtype: 'reservedoctortimes'
-                        //height:300
+                        xtype: 'reservedoctortimes'/*,
+                        height:400*/
                     }
 
-                ]
-                //html:'Second Panel'/*,
 
-            }
 
         ]
 
