@@ -288,41 +288,54 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                 var xml=$.parseXML(response.responseText);
                 var result=[];
                 var datedata=[{text:'全部日期',value:'all'}];
-                var resultrows=$($.parseXML($(xml).find('of_pbxxResult').text())).find('pbxx_row');
-                 resultrows.each(function(i,item){
-                     var time=Ext.Date.format(new Date($(item).find('gzrq').text()),'Y-m-d');
-                     var data={
-                         name:$(item).find('ygxm').text(),
-                         time:time,
-                         ysdm:$(item).find('ysdm').text(),
-                         ksdm:$(item).find('ksdm').text(),
-                         zblb:$(item).find('zblb').text(),
-                         photo:$(item).find('photo').text()
-                     };
-
-                     result.push(data);
-                 });
                 var store=me.doctorView.getStore();
                 var dateview=me.doctorView.down('#datedata');
                 var timetypeview=me.doctorView.down('#timetype');
-                timetypeview.reset();
-                store.clearFilter();
-                store.setData(result);
+                try{
 
-                store.data.each(function(item){
-                    var data={text:item.get("time"),value:item.get("time")};
-                    if(Ext.Array.every(datedata, function(itemdata){
-                            if(itemdata.text ===item.get("time")){
-                                return false ;
-                            }else {
-                                return true;
-                            }
-                        })){
-                        datedata.push(data);
-                    }
+                    var resultrows=$($.parseXML($(xml).find('of_pbxxResult').text())).find('pbxx_row');
+                    resultrows.each(function(i,item){
+                        var time=Ext.Date.format(new Date($(item).find('gzrq').text()),'Y-m-d');
+                        var data={
+                            name:$(item).find('ygxm').text(),
+                            time:time,
+                            ysdm:$(item).find('ysdm').text(),
+                            ksdm:$(item).find('ksdm').text(),
+                            zblb:$(item).find('zblb').text(),
+                            photo:$(item).find('photo').text()
+                        };
 
-                });
-                dateview.setOptions(datedata);
+                        result.push(data);
+                    });
+
+                    timetypeview.reset();
+                    store.clearFilter();
+                    store.setData(result);
+
+                    store.data.each(function(item){
+                        var data={text:item.get("time"),value:item.get("time")};
+                        if(Ext.Array.every(datedata, function(itemdata){
+                                if(itemdata.text ===item.get("time")){
+                                    return false ;
+                                }else {
+                                    return true;
+                                }
+                            })){
+                            datedata.push(data);
+                        }
+
+                    });
+                    dateview.setOptions(datedata);
+
+                }catch(e){
+
+                    timetypeview.reset();
+                    store.clearFilter();
+                    store.setData(result);
+                    dateview.setOptions(datedata);
+
+                }
+
 
             };
             var failFunc = function (form, action) {
