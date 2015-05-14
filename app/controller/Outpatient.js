@@ -11,6 +11,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentCategoryList',
             'outpatient.AppointmentCategoryChildList',
             'outpatient.AppointmentDoctorList',
+            'outpatient.AppointmentUsualList',
             'outpatient.AppointmentDoctorDetail',
             'outpatient.Dateform',
             'outpatient.UserDateInfoList',
@@ -26,6 +27,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
             'outpatient.AppointmentCategory',
             'outpatient.AppointmentDoctor',
+            'outpatient.AppointmentUsual',
             'outpatient.UserDateInfo',
             'outpatient.ReserveDoctorTime',
             'outpatient.Login',
@@ -38,6 +40,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
             'outpatient.AppointmentCategorys',
             'outpatient.AppointmentDoctors',
+            'outpatient.AppointmentUsuals',
             'outpatient.UserDateInfos',
             'outpatient.ReserveDoctorTimes',
             'outpatient.AppointmentCategoryChildren'
@@ -53,6 +56,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             },
             appointmentdoctorview: {
                 itemtap: 'onAppointmentDoctorSelect'
+            },
+            appointmentusualview: {
+                itemtap: 'onAppointmentUsualSelect'
             },
             reservedoctortimesview: {
                 itemtap: 'onAppointmentTimeSelect'
@@ -73,6 +79,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             nav: 'main',
             appointmentcategoryview:'main #appointmentcategorylist',
             appointmentdoctorview:'main #appointmentdoctorlist',
+            appointmentusualview:'main #appointmentusuallist',
             reservedoctortimesview:'main #reservedoctortimes',
             loginbtn:'loginform #userlogin',
             datesendbtn:'dateform #datesend',
@@ -361,10 +368,59 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             nav.push(this.doctorView);
 
         }
+        else{
+            if(!this.usualAppointView){
+                this.usualAppointView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentUsualList');
+
+            }
+            var ksmc=record.get('name');
+            var ksdm=record.get('deptcode');
+            var result=[];
+            var datedata=[{text:'全部日期',value:'all'}];
+            var store=this.usualAppointView.getStore();
+            var dateview=this.usualAppointView.down('#datedata');
+            var timetypeview=this.usualAppointView.down('#timetype');
+
+            var now=new Date();
+            for(var i=1;i<11;i++){
+                var time=Ext.Date.add(now,Ext.Date.DAY,i);
+                var timestr=Ext.Date.format(time,'Y-m-d');
+                result.push({ksmc:ksmc,time:timestr,zblb:1,ksdm:ksdm});
+                result.push({ksmc:ksmc,time:timestr,zblb:2,ksdm:ksdm});
+            }
+
+            timetypeview.reset();
+            store.clearFilter();
+            store.setData(result);
+
+            store.data.each(function(item){
+                var data={text:item.get("time"),value:item.get("time")};
+                if(Ext.Array.every(datedata, function(itemdata){
+                        if(itemdata.text ===item.get("time")){
+                            return false ;
+                        }else {
+                            return true;
+                        }
+                    })){
+                    datedata.push(data);
+                }
+
+            });
+            dateview.setOptions(datedata);
+
+            this.usualAppointView.setTitle(record.get('name'));
+            nav.push(this.usualAppointView);
+
+        }
 
 
     },
 
+    onAppointmentUsualSelect:function(list,index,node,record){
+
+        alert("hello");
+
+    },
     onAppointmentDoctorSelect:function(list, index, node, record){
 
         var nav=this.getNav();
