@@ -57,14 +57,38 @@ Ext.define('AffiliatedHospital.controller.Wisdomcare', {
         var deptview=this.getPossibledeptlistview();
         var store=deptview.getStore();
         store.removeAll();
-        Ext.each(record.get('depts'),function(item){
-            store.add({name:item});
-        })
+
+        var successFunc = function (response, action) {
+            var res=JSON.parse(response.responseText);
+            Ext.each(res,function(item){
+                store.add(item);
+            })
+
+        };
+        var failFunc = function (response, action) {
+            Ext.Msg.alert('获取数据失败', '服务器连接异常，请稍后再试', Ext.emptyFn);
+
+        };
+        var url = "hospital/getdeptsbycode";
+        var depts=record.get("depts");
+        var codes=depts.indexOf(",")>=0?depts.split(","):[depts,depts];
+
+        var params = {
+            codes:codes
+        };
+        CommonUtil.ajaxSend(params, url, successFunc, failFunc, 'POST');
+
+
+
+
 
 
     },
     onPossibledeptSelect:function(list, index, node, record){
-        var nav=this.getNav();
+
+        var outController=this.getApplication().getController('Outpatient');
+        outController.onAppointmentChildSelect(list, index, node, record);
+        /*var nav=this.getNav();
         if(!this.doctorView){
             this.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList');
         }
@@ -79,7 +103,7 @@ Ext.define('AffiliatedHospital.controller.Wisdomcare', {
             callback: function (records, operation, success) {}
         });
         this.doctorView.setTitle(record.get('name'));
-        nav.push(this.doctorView);
+        nav.push(this.doctorView);*/
 
     }
 

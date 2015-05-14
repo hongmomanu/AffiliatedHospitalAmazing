@@ -8,6 +8,7 @@ Ext.define('AffiliatedHospital.view.outpatient.ReserveDoctorTimes', {
     config: {
         store: 'ReserveDoctorTimes',
         itemId:'reservedoctortimes',
+        emptyText: '<div>无相关内容</div>',
         cls:'columnlist2',
         itemTpl: [
             '<div class="item" style="vertical-align: middle;background-color: lightskyblue;margin: 5px;text-align: center" >',
