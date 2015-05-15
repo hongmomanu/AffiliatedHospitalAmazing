@@ -627,11 +627,12 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
     onAppointmentTimeSelect:function(list, index, node, record){
 
-        console.log(record);
+        //console.log(record);
 
         if(Globle_Variable.user){
 
             if(!this.dateformView){
+
                 this.dateformView=Ext.create('AffiliatedHospital.view.outpatient.Dateform');
                 //console.log(this.loginView);
             }
