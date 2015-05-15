@@ -93,13 +93,22 @@ Ext.define('AffiliatedHospital.controller.Main', {
     },
     logoutShow:function(){
 
-        Globle_Variable.user=null;
-        localStorage.user="";
-        var menu=Ext.Viewport.down('mainmenu');
-        menu.getMenuItems()[0].hidden=false;
-        menu.getMenuItems()[1].hidden=true;
-        Ext.Viewport.hideMenu('right');
-        Ext.Msg.alert("提示信息","退出成功!")
+
+        Ext.Msg.confirm( "提示", "是否确认退出", function(btn){
+            if(btn==='yes'){
+                Globle_Variable.user=null;
+                localStorage.user="";
+                var menu=Ext.Viewport.down('mainmenu');
+                menu.getMenuItems()[0].hidden=false;
+                menu.getMenuItems()[1].hidden=true;
+                Ext.Viewport.hideMenu('right');
+
+                Ext.Msg.alert("提示信息","退出成功!");
+            }else{
+
+            }
+        })
+
 
 
     },
