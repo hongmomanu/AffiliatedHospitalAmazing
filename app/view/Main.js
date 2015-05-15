@@ -99,7 +99,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '门诊预约',
                                             iconAlign : 'top',
                                             //icon : "resources/icons/muru.png",
-                                            iconCls:'fa fa-cloud',
+                                            iconCls:'fa fa-ambulance',
                                             itemId:'outpatientreserve'
                                         }, {
                                             xtype : 'button',
@@ -180,10 +180,9 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             xtype : 'button',
                                             text : '专家介绍',
                                             iconAlign : 'top',
+                                            itemId:'expertinfo',
                                             //icon : "resources/icons/about.png",
-                                            iconCls : "fa fa-user",
-                                            handler : function() {
-                                            }
+                                            iconCls : "fa fa-user"
 
                                         }]
                                     }]

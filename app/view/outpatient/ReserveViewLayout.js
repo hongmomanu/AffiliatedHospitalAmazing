@@ -12,7 +12,7 @@ Ext.define('AffiliatedHospital.view.outpatient.ReserveViewLayout', {
     config: {
         fullscreen: true,
 
-        title:'手记预约',
+        title:'手机预约',
         layout:'hbox',
         items:[
             {
