@@ -164,10 +164,9 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             xtype : 'button',
                                             text : '医院导航',
                                             iconAlign : 'top',
+                                            itemId:'hospitalinfo',
                                             //icon : "resources/icons/muru.png",
-                                            iconCls : "fa fa-car",
-                                            handler : function() {
-                                            }
+                                            iconCls : "fa fa-car"
                                         }, {
                                             xtype : 'button',
                                             text : '医院动态',
