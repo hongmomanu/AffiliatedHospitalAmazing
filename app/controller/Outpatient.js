@@ -294,7 +294,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
     onAppointmentChildSelect:function(list, index, node, record){
         var nav=this.getNav();
         var me=this;
-        if(record.get("type")==1){
+        if(record.raw["type"]==1){
             if(!this.doctorView){
                 this.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList');
             }
@@ -309,7 +309,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             var fields=[
                 //{name:'mzhm',value:'A003300005409'}
                 {name:'pbrq',value:appoint_time_str},
-                {name:'ksdm',value:record.get('deptcode')},
+                {name:'ksdm',value:record.raw['deptcode']},
                 {name:'zblb',value:0},
                 {name:'ysdm',value:"0"}
 
@@ -389,7 +389,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             });*/
 
 
-            this.doctorView.setTitle(record.get('name'));
+            this.doctorView.setTitle(record.raw['name']);
             nav.push(this.doctorView);
 
         }
@@ -398,8 +398,8 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                 this.usualAppointView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentUsualList');
 
             }
-            var ksmc=record.get('name');
-            var ksdm=record.get('deptcode');
+            var ksmc=record.raw['name'];
+            var ksdm=record.raw['deptcode'];
             var result=[];
             var datedata=[{text:'全部日期',value:'all'}];
             var store=this.usualAppointView.getStore();
@@ -433,7 +433,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             });
             dateview.setOptions(datedata);
 
-            this.usualAppointView.setTitle(record.get('name'));
+            this.usualAppointView.setTitle(record.raw['name']);
             nav.push(this.usualAppointView);
 
         }

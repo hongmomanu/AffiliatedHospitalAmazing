@@ -456,35 +456,44 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         var depts=this.illdetailview.down('#depts');
         depts.removeAll();
         var me=this;
-        Ext.each(record.get('depts'),function(item){
-            depts.add( {
-                xtype: 'button',
-                text: item,
-                handler:function(){
-
-                    var nav=me.getNav();
-                    if(!me.doctorView){
-                        me.doctorView=Ext.create('AffiliatedHospital.view.outpatient.AppointmentDoctorList');
-                    }
-
-                    var store=me.doctorView.getStore();
-                    store.load({
-                        //define the parameters of the store:
-                        params: {
-                            pid: record.get("_id")
-                        },
-                        scope: me,
-                        callback: function (records, operation, success) {}
-                    });
-                    me.doctorView.setTitle(record.get('name'));
-                    nav.push(me.doctorView);
+        console.log(record);
 
 
-                },
-                //width:'50%',
-                badgeText: '预约'
+        var successFunc = function (response, action) {
+            var res=JSON.parse(response.responseText);
+
+
+            Ext.each(res,function(item){
+                depts.add( {
+                    xtype: 'button',
+                    text: item.name,
+                    handler:function(){
+                        var itemobject={raw:item};
+                        var outController=me.getApplication().getController('Outpatient');
+                        outController.onAppointmentChildSelect(null, null, null, itemobject);
+
+                    },
+                    //width:'50%',
+                    badgeText: '预约'
+                });
             });
-        });
+
+        };
+        var failFunc = function (response, action) {
+            Ext.Msg.alert('获取数据失败', '服务器连接异常，请稍后再试', Ext.emptyFn);
+
+        };
+        var url = "hospital/getdeptsbycode";
+        var deptids=record.get("depts");
+        var codes=deptids.indexOf(",")>=0?deptids.split(","):[deptids,deptids];
+
+        var params = {
+            codes:codes
+        };
+        CommonUtil.ajaxSend(params, url, successFunc, failFunc, 'POST');
+
+
+
 
         detail.setActiveItem(0);
         var successFunc = function (response, action) {
