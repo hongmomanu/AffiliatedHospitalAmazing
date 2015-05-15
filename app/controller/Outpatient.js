@@ -19,6 +19,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.ExpertViewDoctorList',
             'outpatient.UserDateInfoList',
             'outpatient.ReserveDoctorTimes',
+            'outpatient.ExpertViewDetail',
             'outpatient.Login',
             'outpatient.ReserveViewLayout'
         ],
@@ -73,6 +74,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             expertviewlistview: {
                 itemtap: 'onExpertViewSelect'
             },
+            expertviewdoctorlistview: {
+                itemtap: 'onExpertdoctorViewSelect'
+            },
             appointmentcategorychildview: {
                 itemtap: 'onAppointmentChildSelect'
             },
@@ -90,6 +94,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             appointmentcategoryview:'main #appointmentcategorylist',
             appointmentdoctorview:'main #appointmentdoctorlist',
             expertviewlistview:'main #expertviewlist',
+            expertviewdoctorlistview:'main #expertviewdoctorlist',
             appointmentusualview:'main #appointmentusuallist',
             reservedoctortimesview:'main #reservedoctortimes',
             loginbtn:'loginform #userlogin',
@@ -622,6 +627,54 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         var store=this.expertdoctorView.getStore();
         store.add(record.get('data'))
         this.getNav().push(this.expertdoctorView);
+
+    },
+
+    onExpertdoctorViewSelect:function(list,index,node,record){
+
+        if(!this.expertViewDetail){
+            this.expertViewDetail=Ext.create('AffiliatedHospital.view.outpatient.ExpertViewDetail');
+        }
+        this.expertViewDetail.setTitle(record.get('name'));
+        var me=this;
+
+        Ext.Viewport.mask({ xtype: 'loadmask',
+            message: "加载数据中..." });
+
+
+        var url=Globle_Variable.soapurl;
+        var fields=[
+
+            {name:'ysdm',value:record.get('code')}
+
+        ];
+        var successFunc = function (response, action) {
+
+            Ext.Viewport.unmask();
+            var xml=$.parseXML(response.responseText);
+            var  xmlitem=$($.parseXML($(xml).find('of_ysxxResult').text()));
+            var doctorinfo=xmlitem.find('ysjj').text();
+            var photo=xmlitem.find('photo').text();
+            var str='<img  style="float:left;"  onError="this.src=\'resources/icons/noperson.gif\';"  src="'+Globle_Variable.websourceurl+photo+'"><div style="font-size:smaller;color:#122D3A;margin: 5px;">'+doctorinfo+'</div>';
+            //doctoinforitem.setHtml(str);
+            me.expertViewDetail.setHtml(str);
+
+
+        };
+        var failFunc = function (form, action) {
+            Ext.Viewport.unmask();
+            Ext.Msg.alert("提示信息","获取数据失败");
+        };
+        CommonUtil.soapCommon(url,'of_ysxx','n_yy',fields,successFunc,failFunc);
+
+
+
+
+        //var str="";
+        //this.expertViewDetail.setHtml("<iframe width='100%' height='100%' src='http://0575fy.com/i.php?s=/d_appon_id_178_kid_42'>")
+
+        this.getNav().push(this.expertViewDetail);
+
 
     },
 

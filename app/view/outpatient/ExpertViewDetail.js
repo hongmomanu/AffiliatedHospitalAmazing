@@ -6,6 +6,7 @@ Ext.define('AffiliatedHospital.view.outpatient.ExpertViewDetail', {
     config: {
         title: '专家简介',
         ullscreen: true,
+        scrollable:true,
         html:""
         //cls: 'x-contacts',
 

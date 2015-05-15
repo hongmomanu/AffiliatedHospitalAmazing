@@ -32,7 +32,7 @@ Ext.define('AffiliatedHospital.view.outpatient.ExpertViewList', {
         items: [],
         itemTpl: [
             '<div class="headshot">',
-            '{name}',
+            '{name}({data.length})',
             '</div>'
         ].join('')
     }
