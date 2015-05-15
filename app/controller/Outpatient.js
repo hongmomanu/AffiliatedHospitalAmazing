@@ -21,6 +21,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.ExpertViewDoctorList',
             'outpatient.UserDateInfoList',
             'outpatient.ReserveDoctorTimes',
+            'outpatient.HospitalNewsDetail',
             'outpatient.ExpertViewDetail',
             'outpatient.Login',
             'outpatient.ReserveViewLayout'
@@ -75,6 +76,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             reservedoctortimesview: {
                 itemtap: 'onAppointmentTimeSelect'
             },
+            hospitalnewslistview: {
+                itemtap: 'onHospitalNewsSelect'
+            },
             expertviewlistview: {
                 itemtap: 'onExpertViewSelect'
             },
@@ -101,6 +105,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             expertviewdoctorlistview:'main #expertviewdoctorlist',
             appointmentusualview:'main #appointmentusuallist',
             reservedoctortimesview:'main #reservedoctortimes',
+            hospitalnewslistview:'main #hospitalnewslist',
             loginbtn:'loginform #userlogin',
             datesendbtn:'dateform #datesend',
             appointmentcategorychildview:'main #appointmentcategorychildlist'
@@ -678,6 +683,29 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         //this.expertViewDetail.setHtml("<iframe width='100%' height='100%' src='http://0575fy.com/i.php?s=/d_appon_id_178_kid_42'>")
 
         this.getNav().push(this.expertViewDetail);
+
+
+    },
+
+    onHospitalNewsSelect:function(list, index, node, record){
+        var me=this;
+        if(!this.hospitalnewsDetailView){
+
+            this.hospitalnewsDetailView=Ext.create('AffiliatedHospital.view.outpatient.HospitalNewsDetail');
+            //console.log(this.loginView);
+        }
+
+        Ext.Viewport.mask({ xtype: 'loadmask',
+            message: "下载中..." });
+        $.get(record.get('data'),null,function(a){
+            Ext.Viewport.unmask();
+            var item=$(a).find('.news_content2');
+            me.hospitalnewsDetailView.setHtml('<div style="margin: 5px;">'+item.html()+'</div>');
+        });
+        this.hospitalnewsDetailView.setTitle(record.get('title'));
+
+        this.getNav().push(this.hospitalnewsDetailView);
+
 
 
     },

@@ -272,7 +272,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
             var item=$(a).find('.news2_1').find('li[style*="width:625px"]');
             for(var i=0;i<item.length;i++){
 
-                var title='<div style="margin-right: 15px; color: darkgrey">'+$(item[i]).text()+'</div>'
+                var title='<div style="margin-right: 15px;">'+$(item[i]).text()+'</div>'
 
                 data.push({title: title,data:$(item[i]).find('a').attr('href')})
             }

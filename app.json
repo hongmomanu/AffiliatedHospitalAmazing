@@ -106,7 +106,7 @@
      *      }
      */
     "css": [
-        {
+       {
             "path": "resources/css/app.css",
             "update": "delta"
         },{
@@ -115,7 +115,13 @@
         },{
             "path": "resources/css/fontawsome/css/font-awesome.min.css",
             "update": "delta"
-        }
+        }/*,
+        {
+            "path": "resources/css/wp.css",
+            "platform": ["chrome"],
+            "theme": "Blackberry",
+            "update": "delta"
+        }*/
     ],
 
     /**
