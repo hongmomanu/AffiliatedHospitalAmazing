@@ -171,10 +171,9 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             xtype : 'button',
                                             text : '医院动态',
                                             iconAlign : 'top',
+                                            itemId:'hospitalnews',
                                             //icon : "resources/icons/shuijiao.png",
-                                            iconCls : "fa fa-hacker-news",
-                                            handler : function() {
-                                            }
+                                            iconCls : "fa fa-hacker-news"
                                         }, {
                                             xtype : 'button',
                                             text : '专家介绍',

@@ -63,6 +63,10 @@ Ext.define('AffiliatedHospital.controller.Main', {
             hospitalinfobtn:{
                 tap:'hospitalinfoShow'
             }
+            ,
+            hospitalnewsbtn:{
+                tap:'hospitalnewsShow'
+            }
 
         },
         refs: {
@@ -76,6 +80,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
             healthwikibtn:'main #healthwiki',
             expertinfobtn:'main #expertinfo',
             hospitalinfobtn:'main #hospitalinfo',
+            hospitalnewsbtn:'main #hospitalnews',
             installpatientbtn:'main #installpatient',
             installdoctorbtn:'main #installdoctor'
         }
@@ -248,6 +253,34 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
         }
         this.getNav().push(this.hospitalInfoView);
+    },
+
+    hospitalnewsShow:function(){
+        if(!this.hospitalNewsView){
+            this.hospitalNewsView=Ext.create('AffiliatedHospital.view.outpatient.HospitalNewsList');
+
+        }
+        this.getNav().push(this.hospitalNewsView);
+        var me=this;
+
+        var data_url=Globle_Variable.websourceurl+'html/8/84/';
+        var data=[];
+        Ext.Viewport.mask({ xtype: 'loadmask',
+            message: "下载中..." });
+        $.get(data_url,null,function(a){
+            Ext.Viewport.unmask();
+            var item=$(a).find('.news2_1').find('li[style*="width:625px"]');
+            for(var i=0;i<item.length;i++){
+
+                var title='<div style="margin-right: 15px; color: darkgrey">'+$(item[i]).text()+'</div>'
+
+                data.push({title: title,data:$(item[i]).find('a').attr('href')})
+            }
+
+            console.log(data);
+            me.hospitalNewsView.setData(data);
+        });
+
     },
 
     installdoctor:function(){
