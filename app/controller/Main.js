@@ -193,6 +193,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
             };
             var failFunc = function (form, action) {
+                Ext.Viewport.unmask();
                 Ext.Msg.alert("提示信息","查询失败");
             };
             CommonUtil.soapCommon(url,'of_yycx','n_yy',fields,successFunc,failFunc);
