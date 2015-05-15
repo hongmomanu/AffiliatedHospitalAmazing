@@ -16,6 +16,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentUsualDetail',
             'outpatient.Dateform',
             'outpatient.ExpertViewList',
+            'outpatient.ExpertViewDoctorList',
             'outpatient.UserDateInfoList',
             'outpatient.ReserveDoctorTimes',
             'outpatient.Login',
@@ -34,6 +35,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.ReserveDoctorTime',
             'outpatient.Login',
             'outpatient.ExpertView',
+            'outpatient.ExpertViewDoctor',
             'outpatient.DateForm',
             'outpatient.AppointmentCategoryChild'
 
@@ -46,6 +48,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentUsuals',
             'outpatient.UserDateInfos',
             'outpatient.ExpertViews',
+            'outpatient.ExpertViewDoctors',
             'outpatient.ReserveDoctorTimes',
             'outpatient.AppointmentCategoryChildren'
 
@@ -67,6 +70,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             reservedoctortimesview: {
                 itemtap: 'onAppointmentTimeSelect'
             },
+            expertviewlistview: {
+                itemtap: 'onExpertViewSelect'
+            },
             appointmentcategorychildview: {
                 itemtap: 'onAppointmentChildSelect'
             },
@@ -83,6 +89,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             nav: 'main',
             appointmentcategoryview:'main #appointmentcategorylist',
             appointmentdoctorview:'main #appointmentdoctorlist',
+            expertviewlistview:'main #expertviewlist',
             appointmentusualview:'main #appointmentusuallist',
             reservedoctortimesview:'main #reservedoctortimes',
             loginbtn:'loginform #userlogin',
@@ -604,6 +611,17 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             callback: function (records, operation, success) {}
         });*/
 
+
+    },
+
+    onExpertViewSelect:function(list, index, node, record){
+        if(!this.expertdoctorView){
+            this.expertdoctorView=Ext.create('AffiliatedHospital.view.outpatient.ExpertViewDoctorList');
+        }
+        this.expertdoctorView.setTitle(record.get('name'));
+        var store=this.expertdoctorView.getStore();
+        store.add(record.get('data'))
+        this.getNav().push(this.expertdoctorView);
 
     },
 
