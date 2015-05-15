@@ -15,6 +15,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.AppointmentDoctorDetail',
             'outpatient.AppointmentUsualDetail',
             'outpatient.Dateform',
+            'outpatient.HospitalInfoView',
             'outpatient.ExpertViewList',
             'outpatient.ExpertViewDoctorList',
             'outpatient.UserDateInfoList',
