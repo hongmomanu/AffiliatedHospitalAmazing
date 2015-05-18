@@ -446,6 +446,26 @@ Ext.define('AffiliatedHospital.controller.Main', {
     },
     initRender: function () {
 
+        var me=this;
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            document.addEventListener("backbutton", onBackKeyDown, false);
+        }
+        function onBackKeyDown() {
+            var items=me.getNav().getInnerItems();
+            if(items.length>1){
+                me.getNav().pop()
+            }else{
+                Ext.Msg.confirm( "提示", "是否确认退出", function(btn){
+                    if(btn==='yes'){
+                        navigator.app.exitApp();
+                    }else{
+
+                    }
+                })
+            }
+
+        }
 
 
         // Application menu

@@ -59,7 +59,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentUsualList', {
                                 }
                             }
                         },
-                        width:140/*,
+                        width:150/*,
                         options: (function(){
                             var data=[{text:'全部日期',value:'all'}];
                             var now=new Date();

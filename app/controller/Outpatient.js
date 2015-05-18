@@ -351,7 +351,9 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                         result.push(data);
                     });
 
+                    if(store.getData().items.length>0)dateview.reset();
                     timetypeview.reset();
+
                     store.clearFilter();
                     store.setData(result);
 
@@ -373,6 +375,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                 }catch(e){
 
                     timetypeview.reset();
+                    if(store.getData().items.length>0)dateview.reset();
                     store.clearFilter();
                     store.setData(result);
                     dateview.setOptions(datedata);
@@ -426,6 +429,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             }
 
             timetypeview.reset();
+            if(store.getData().items.length>0)dateview.reset();
             store.clearFilter();
             store.setData(result);
 
