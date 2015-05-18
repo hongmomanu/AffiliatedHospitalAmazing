@@ -5,41 +5,57 @@ Ext.define('AffiliatedHospital.view.outpatient.SoftAbout', {
 
     //cls: 'x-contacts',
     config: {
-        title: '关于我们',
-        fullscreen: true,
-        scrollable:true,
-        //centered :true,
-        layout: {
-            type: 'fit',
-            align: 'middle'
+
+        title:'医生注册',
+        style:{
+            'padding':'1px'
         },
+
+        layout: 'fit',
+
+        fullscreen: true,
 
         items:[
 
             {
-
                 xtype: 'container',
-                layout: 'vbox',
+                layout: 'fit',
                 items:[
 
                     {
-                        xtype:'button',
-                        centered :true,
-                        text:'服务条款'
-                    },{
-                        xtype:'button',
-                        centered :true,
-                        text:'关于我们'
+                        xtype:'fieldset',
+                        instructions:'Copyright @2015绍兴市文理学院附属医院',
+                        centered: true,
+                        defaults:{
+                            labelWidth:'130px',
+                            labelAlign:'left'
+                        },
+
+                        items:[
+                            {
+                                xtype:'button',
+                                width:245,
+                                margin:5,
+                                itemId:'showprovision',
+                                //centered :true,
+                                text:'服务条款'
+                            },
+
+                            {
+                                xtype:'button',
+                                width:245,
+                                margin:5,
+                                itemId:'about',
+                                //centered :true,
+                                text:'关于我们'
+                            }
+                        ]
                     }
-
                 ]
+
             }
-
-
         ]
 
-        //html:'<div style="text-align: center;padding-top: 30px;" id="biggercode"></div>'
-        //cls: 'x-contacts',
 
     }
 });

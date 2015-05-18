@@ -21,6 +21,8 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.ExpertViewDoctorList',
             'outpatient.UserDateInfoList',
             'outpatient.ReserveDoctorTimes',
+            'outpatient.AboutView',
+            'outpatient.ProvisionView',
             'outpatient.HospitalNewsDetail',
             'outpatient.ExpertViewDetail',
             'outpatient.Login',

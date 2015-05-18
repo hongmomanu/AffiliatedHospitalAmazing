@@ -5,7 +5,7 @@ Ext.define('AffiliatedHospital.view.outpatient.HospitalNewsDetail', {
     //cls: 'x-contacts',
     config: {
         title: '',
-        ullscreen: true,
+        fullscreen: true,
         scrollable:true,
         html:""
         //cls: 'x-contacts',

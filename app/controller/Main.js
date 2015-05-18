@@ -68,12 +68,20 @@ Ext.define('AffiliatedHospital.controller.Main', {
             ,
             hospitalnewsbtn:{
                 tap:'hospitalnewsShow'
+            },
+            showprovisionbtn:{
+                tap:'showprovisionview'
+            },
+            showaboutbtn:{
+                tap:'showaboutview'
             }
 
         },
         refs: {
 
             nav: 'main',
+            showprovisionbtn:'softabout #showprovision',
+            showaboutbtn:'softabout #about',
             reservenavsplitbtn:'main #reservenav',
             homepage:'main #homepage',
             outpatientreservebtn:'main #outpatientreserve',
@@ -86,6 +94,27 @@ Ext.define('AffiliatedHospital.controller.Main', {
             installpatientbtn:'main #installpatient',
             installdoctorbtn:'main #installdoctor'
         }
+    },
+    showprovisionview:function(btn){
+        Ext.Viewport.hideMenu('right');
+
+        if(!this.provisionView){
+            this.provisionView=Ext.create('AffiliatedHospital.view.outpatient.ProvisionView');
+        }
+        this.getNav().push(this.provisionView);
+
+
+    },
+    showaboutview:function(btn){
+        Ext.Viewport.hideMenu('right');
+
+        if(!this.aboutdetailView){
+            this.aboutdetailView=Ext.create('AffiliatedHospital.view.outpatient.AboutView');
+        }
+        this.getNav().push(this.aboutdetailView);
+
+
+
     },
     returnhomemenuFunc:function(){
         Ext.Viewport.hideMenu('right');
