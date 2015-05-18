@@ -78,10 +78,9 @@ Ext.define('AffiliatedHospital.view.menu.MainMenu', {
                 iconCls: 'download',
                 scope: this,
                 handler: function() {
-                    Ext.Viewport.hideMenu('right');
-                    /* Ext.getCmp('searchBar').hide();
-                     this.container.setActiveItem(1);
-                     this.getBBMStore().clearFilter();*/
+                    var mainview=Ext.Viewport.down('main');
+                    mainview.fireEvent('appsdownload', mainview);
+
                 }
             },
             {

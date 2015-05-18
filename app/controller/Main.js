@@ -36,6 +36,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
             nav: {
                 initialize: 'initRender',
                 returnhomemenu:'returnhomemenuFunc',
+                appsdownload:'showappsdownload',
                 showqrcode:'showqrcodeFunc',
                 logoutmenu:'logoutShow',
                 showabout:'showaboutFunc',
@@ -102,6 +103,15 @@ Ext.define('AffiliatedHospital.controller.Main', {
             this.provisionView=Ext.create('AffiliatedHospital.view.outpatient.ProvisionView');
         }
         this.getNav().push(this.provisionView);
+
+
+    },
+
+    showappsdownload:function(){
+        Ext.Viewport.hideMenu('right');
+
+
+
 
 
     },
