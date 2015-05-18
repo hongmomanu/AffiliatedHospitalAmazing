@@ -79,6 +79,7 @@ Ext.define('CommonUtil', {
             item.url=url;
 
             item.content=content;
+            //Ext.Msg.alert("提示信息","2");
 
             this.ajaxSend(item, 'hospital/sendsoap', successFunc, failFunc, "post");
 

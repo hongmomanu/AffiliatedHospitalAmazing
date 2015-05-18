@@ -23,6 +23,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.ReserveDoctorTimes',
             'outpatient.AboutView',
             'outpatient.ProvisionView',
+            'outpatient.AppsDownLoad',
             'outpatient.HospitalNewsDetail',
             'outpatient.ExpertViewDetail',
             'outpatient.Login',
@@ -148,8 +149,10 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
         var formpanel=btn.up('formpanel');
         CommonUtil.addMessage();
+
         var me=this;
         var valid = CommonUtil.valid('AffiliatedHospital.model.outpatient.Login', formpanel);
+
 
         if(valid){
 
@@ -163,10 +166,12 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                 {name:'mzhm',value:formpanel.getValues().cardnum.trim()}
 
             ];
+            Ext.Msg.alert("提示信息","1");
             var successFunc = function (response, action) {
-
+                //Ext.Msg.alert("提示信息","3");
                 Ext.Viewport.unmask();
                 var xml=$.parseXML(response.responseText);
+                Ext.Msg.alert("提示信息",xml);
 
                 try{
                     var userinfo=$($.parseXML($(xml).find('of_brxxResult').text())).find('brxx_row');
@@ -175,6 +180,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
                     var mzhm=userinfo.find('mzhm').text();
                     var sfzh=userinfo.find('sfzh').text();
                     var jtdh=userinfo.find('jtdh').text();
+                    Ext.Msg.alert("提示信息",brxm);
                     if(brxm.trim()===formpanel.getValues().name.trim()){
                         var user={
                             brxm:brxm,
@@ -209,6 +215,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
 
             };
             var failFunc = function (form, action) {
+                Ext.Msg.alert("提示信息","4");
                 Ext.Viewport.unmask();
                 Ext.Msg.alert("提示信息","获取数据失败");
             };

@@ -39,7 +39,7 @@ Ext.define('AffiliatedHospital.view.wisdomcare.PossibleIllList', {
                 items: [
                     {
                         xtype: 'searchfield',
-                        width:120,
+                        width:220,
                         placeHolder: '输入症状...',
                         listeners: {
                             scope: this,

@@ -73,7 +73,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppointmentUsualList', {
                     },
                     {
                         xtype: 'selectfield',
-                        width:90,
+                        width:120,
                         itemId:'timetype',
                         listeners : {
                             change : {// 内容改变

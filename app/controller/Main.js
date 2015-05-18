@@ -75,6 +75,12 @@ Ext.define('AffiliatedHospital.controller.Main', {
             },
             showaboutbtn:{
                 tap:'showaboutview'
+            },
+            doctorclientbtn:{
+                tap:'downdoctorclient'
+            },
+            patientclientbtn:{
+                tap:'downpatientclient'
             }
 
         },
@@ -83,6 +89,8 @@ Ext.define('AffiliatedHospital.controller.Main', {
             nav: 'main',
             showprovisionbtn:'softabout #showprovision',
             showaboutbtn:'softabout #about',
+            doctorclientbtn:'appsdownload #doctorclient',
+            patientclientbtn:'appsdownload #patientclient',
             reservenavsplitbtn:'main #reservenav',
             homepage:'main #homepage',
             outpatientreservebtn:'main #outpatientreserve',
@@ -106,9 +114,22 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
 
     },
+    downdoctorclient:function(){
+
+        this.installdoctor();
+    },
+    downpatientclient:function(){
+        this.installpatient();
+    },
+
 
     showappsdownload:function(){
         Ext.Viewport.hideMenu('right');
+
+        if(!this.appsdownView){
+            this.appsdownView=Ext.create('AffiliatedHospital.view.outpatient.AppsDownLoad');
+        }
+        this.getNav().push(this.appsdownView);
 
 
 
