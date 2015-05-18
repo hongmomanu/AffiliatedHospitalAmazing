@@ -468,6 +468,11 @@ Ext.define('AffiliatedHospital.controller.Main', {
                 Ext.Msg.confirm( "提示", "是否确认退出", function(btn){
                     if(btn==='yes'){
                         navigator.app.exitApp();
+                        /*navigator.Backbutton.goHome(function() {
+                            //console.log('success')
+                        }, function() {
+                            //console.log('fail')
+                        });*/
                     }else{
 
                     }
