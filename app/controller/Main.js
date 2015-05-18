@@ -105,11 +105,13 @@ Ext.define('AffiliatedHospital.controller.Main', {
         }
     },
     showprovisionview:function(btn){
-        Ext.Viewport.hideMenu('right');
+        //Ext.Viewport.hideMenu('right');
+        //this.returnhomemenuFunc();
 
         if(!this.provisionView){
             this.provisionView=Ext.create('AffiliatedHospital.view.outpatient.ProvisionView');
         }
+        this.getNav().pop(this.provisionView);
         this.getNav().push(this.provisionView);
 
 
@@ -125,10 +127,12 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
     showappsdownload:function(){
         Ext.Viewport.hideMenu('right');
+        //this.returnhomemenuFunc();
 
         if(!this.appsdownView){
             this.appsdownView=Ext.create('AffiliatedHospital.view.outpatient.AppsDownLoad');
         }
+        this.getNav().pop(this.appsdownView);
         this.getNav().push(this.appsdownView);
 
 
@@ -138,6 +142,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
     },
     showaboutview:function(btn){
         Ext.Viewport.hideMenu('right');
+        //this.returnhomemenuFunc();
 
         if(!this.aboutdetailView){
             this.aboutdetailView=Ext.create('AffiliatedHospital.view.outpatient.AboutView');
@@ -155,10 +160,12 @@ Ext.define('AffiliatedHospital.controller.Main', {
     },
     showaboutFunc:function(){
         Ext.Viewport.hideMenu('right');
+        //this.returnhomemenuFunc();
 
         if(!this.aboutView){
             this.aboutView=Ext.create('AffiliatedHospital.view.outpatient.SoftAbout');
         }
+        this.getNav().pop(this.aboutView);
         this.getNav().push(this.aboutView);
     },
     showqrcodeFunc:function(item){
@@ -169,6 +176,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
             //console.log(this.loginView);
         }
 
+        this.getNav().pop(this.qrcodeView);
         this.getNav().push(this.qrcodeView);
 
         this.makecode(220,220,"biggercode");
@@ -193,6 +201,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
             //console.log(this.loginView);
         }
 
+        this.getNav().pop(this.loginView);
         this.getNav().push(this.loginView);
         //this.outpatientReserveShow()
 
