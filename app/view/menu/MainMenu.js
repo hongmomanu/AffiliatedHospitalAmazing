@@ -89,7 +89,9 @@ Ext.define('AffiliatedHospital.view.menu.MainMenu', {
                 iconCls: 'info',
                 scope: this,
                 handler: function() {
-                    Ext.Viewport.hideMenu('right');
+                    var mainview=Ext.Viewport.down('main');
+                    mainview.fireEvent('showabout', mainview);
+                    //Ext.Viewport.hideMenu('right');
                     /*Ext.getCmp('searchBar').hide();
                      this.container.setActiveItem(1);
                      this.getBBMStore().clearFilter();*/
