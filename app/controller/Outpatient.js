@@ -25,6 +25,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
             'outpatient.ExpertViewDetail',
             'outpatient.Login',
             'outpatient.QrCodeView',
+            'outpatient.SoftAbout',
             'outpatient.ReserveViewLayout'
         ],
         requires: [

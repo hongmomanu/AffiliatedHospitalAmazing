@@ -38,6 +38,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
                 returnhomemenu:'returnhomemenuFunc',
                 showqrcode:'showqrcodeFunc',
                 logoutmenu:'logoutShow',
+                showabout:'showaboutFunc',
                 loginmenu:'loginShow'
             },
             installpatientbtn:{
@@ -91,6 +92,14 @@ Ext.define('AffiliatedHospital.controller.Main', {
         var nav=this.getNav();
         nav.pop(nav.getInnerItems().length - 1);
 
+    },
+    showaboutFunc:function(){
+        Ext.Viewport.hideMenu('right');
+
+        if(!this.aboutView){
+            this.aboutView=Ext.create('AffiliatedHospital.view.outpatient.SoftAbout');
+        }
+        this.getNav().push(this.aboutView);
     },
     showqrcodeFunc:function(item){
         Ext.Viewport.hideMenu('right');
