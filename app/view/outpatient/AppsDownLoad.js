@@ -26,6 +26,7 @@ Ext.define('AffiliatedHospital.view.outpatient.AppsDownLoad', {
                         xtype:'fieldset',
                         instructions:'Copyright @2015绍兴市文理学院附属医院',
                         centered: true,
+                        padding:5,
                         defaults:{
                             labelWidth:'130px',
                             labelAlign:'left'
@@ -34,8 +35,9 @@ Ext.define('AffiliatedHospital.view.outpatient.AppsDownLoad', {
                         items:[
                             {
                                 xtype:'button',
-                                width:245,
-                                margin:5,
+                                //width:245,
+                                margin:'0 5 0 5',
+                                iconCls : "fa fa-download",
                                 itemId:'doctorclient',
                                 //centered :true,
                                 text:'e医通医生客户端'
@@ -43,8 +45,9 @@ Ext.define('AffiliatedHospital.view.outpatient.AppsDownLoad', {
 
                             {
                                 xtype:'button',
-                                width:245,
-                                margin:5,
+                                //width:245,
+                                margin:'5 5 0 5',
+                                iconCls : "fa fa-download",
                                 itemId:'patientclient',
                                 //centered :true,
                                 text:'e医通患者客户端'
