@@ -36,6 +36,7 @@ Ext.define('AffiliatedHospital.controller.Main', {
             nav: {
                 initialize: 'initRender',
                 returnhomemenu:'returnhomemenuFunc',
+                showqrcode:'showqrcodeFunc',
                 logoutmenu:'logoutShow',
                 loginmenu:'loginShow'
             },
@@ -90,6 +91,29 @@ Ext.define('AffiliatedHospital.controller.Main', {
         var nav=this.getNav();
         nav.pop(nav.getInnerItems().length - 1);
 
+    },
+    showqrcodeFunc:function(item){
+        Ext.Viewport.hideMenu('right');
+
+        if(!this.qrcodeView){
+            this.qrcodeView=Ext.create('AffiliatedHospital.view.outpatient.QrCodeView');
+            //console.log(this.loginView);
+        }
+
+        this.getNav().push(this.qrcodeView);
+
+        this.makecode(220,220,"biggercode");
+
+
+    },
+    makecode:function(width,height,id){
+        var cont=$('#'+id);
+        cont.html('');
+        cont.qrcode({
+            text	: Globle_Variable.serverurl+'download/hospital.apk',
+            width		: width,
+            height		: height
+        });
     },
     loginShow:function(){
 

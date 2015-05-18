@@ -61,8 +61,21 @@ Ext.define('AffiliatedHospital.view.menu.MainMenu', {
 
                 }
             }, {
-                text: '意见反馈',
-                iconCls: 'reply',
+                text: '软件分享',
+                iconCls: 'organize',
+                scope: this,
+                handler: function() {
+                    var mainview=Ext.Viewport.down('main');
+                    mainview.fireEvent('showqrcode', mainview);
+                    //Ext.Viewport.hideMenu('right');
+                    /*Ext.getCmp('searchBar').hide();
+                     this.container.setActiveItem(1);
+                     this.getBBMStore().clearFilter();*/
+                }
+            },
+            {
+                text: '常用软件',
+                iconCls: 'download',
                 scope: this,
                 handler: function() {
                     Ext.Viewport.hideMenu('right');
@@ -70,17 +83,8 @@ Ext.define('AffiliatedHospital.view.menu.MainMenu', {
                      this.container.setActiveItem(1);
                      this.getBBMStore().clearFilter();*/
                 }
-            }, {
-                text: '软件分享',
-                iconCls: 'organize',
-                scope: this,
-                handler: function() {
-                    Ext.Viewport.hideMenu('right');
-                    /*Ext.getCmp('searchBar').hide();
-                     this.container.setActiveItem(1);
-                     this.getBBMStore().clearFilter();*/
-                }
-            }, {
+            },
+            {
                 text: '关于我们',
                 iconCls: 'info',
                 scope: this,

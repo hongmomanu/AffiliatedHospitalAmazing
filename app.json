@@ -75,6 +75,14 @@
             "x-bootstrap": true
         },
         {
+            "path": "jquery.qrcode.js",
+            "x-bootstrap": true
+        },
+        {
+            "path": "qrcode.js",
+            "x-bootstrap": true
+        },
+        {
             "path": "config.js",
             "update": "delta"
         },
