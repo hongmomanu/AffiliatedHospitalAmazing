@@ -2,7 +2,7 @@ Ext.define('AffiliatedHospital.store.wisdomcare.PossibleIlls', {
     extend: 'Ext.data.Store',
     config: {
         model: 'AffiliatedHospital.model.wisdomcare.PossibleIll',
-        autoLoad: true,
+        autoLoad: false,
         //sorters: '_id',
         /*grouper: {
             groupFn: function(record) {

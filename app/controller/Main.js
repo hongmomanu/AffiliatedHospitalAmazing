@@ -248,11 +248,10 @@ Ext.define('AffiliatedHospital.controller.Main', {
         if(!this.possibleIllView){
             //this.reserveView=Ext.create('AffiliatedHospital.view.outpatient.ReserveView');
             this.possibleIllView=Ext.create('AffiliatedHospital.view.wisdomcare.PossibleIllViewLayout');
-            /*this.getNav().push(this.reserveView);
-            var btn=this.getReservenavsplitbtn();
-            btn.fireEvent('release');*/
-            //console.log(this.getrReservenavsplitbtn())
+            var store=this.possibleIllView.down('possibleilllist').getStore();
+            store.load();
         }
+
         this.getNav().push(this.possibleIllView);
 
 
@@ -352,7 +351,6 @@ Ext.define('AffiliatedHospital.controller.Main', {
 
         if(!this.hospitalInfoView){
             this.hospitalInfoView=Ext.create('AffiliatedHospital.view.outpatient.HospitalInfoView');
-
         }
         this.getNav().push(this.hospitalInfoView);
     },

@@ -536,7 +536,11 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
                     itemtap: {fn: this.onPssibleillSelect, scope: this, single: false}
                 });
 
+                var store=this.possibleillview.getStore();
+                store.load();
+
             }
+
             this.possibleillview.setTitle(record.get('name'));
             this.getNav().push(this.possibleillview);
 
