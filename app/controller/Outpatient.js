@@ -649,7 +649,7 @@ Ext.define('AffiliatedHospital.controller.Outpatient', {
         }
         this.expertdoctorView.setTitle(record.get('name'));
         var store=this.expertdoctorView.getStore();
-        store.add(record.get('data'))
+        store.setData(record.get('data'));
         this.getNav().push(this.expertdoctorView);
 
     },
