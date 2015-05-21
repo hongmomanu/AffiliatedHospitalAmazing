@@ -99,14 +99,14 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '门诊预约',
                                             iconAlign : 'top',
                                             //icon : "resources/icons/muru.png",
-                                            iconCls:'fa fa-ambulance',
+                                            iconCls:'fa fa-ambulance fa-color-blue',
                                             itemId:'outpatientreserve'
                                         }, {
                                             xtype : 'button',
                                             text : '智能分诊',
                                             itemId:'possibleill',
                                             iconAlign : 'top',
-                                            iconCls : "fa fa-bed"
+                                            iconCls : "fa fa-bed fa-color-blue"
                                             //icon : "resources/icons/weinai.png"
                                         },/* {
                                             xtype : 'button',
@@ -120,7 +120,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '预约查询',
                                             iconAlign : 'top',
                                             itemId:'datequery',
-                                            iconCls:'fa fa-search fa-5x',
+                                            iconCls:'fa fa-search fa-5x fa-color-blue',
                                             //icon : "resources/icons/niaobu.png",
                                             handler : function() {
                                             }
@@ -135,7 +135,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '消费记录',
                                             iconAlign : 'top',
                                             //icon : "resources/icons/tiwen.png",
-                                            iconCls : "fa fa-jpy",
+                                            iconCls : "fa fa-jpy fa-color-blue" ,
                                             handler : function() {
                                             }
                                         }, {
@@ -143,7 +143,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '诊疗记录',
                                             iconAlign : 'top',
                                             //icon : "resources/icons/weinai.png",
-                                            iconCls : "fa fa-hospital-o",
+                                            iconCls : "fa fa-hospital-o fa-color-blue",
                                             handler : function() {
                                             }
                                         }, {
@@ -151,7 +151,7 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             text : '健康百科',
                                             itemId:'healthwiki',
                                             iconAlign : 'top',
-                                            iconCls : "fa fa-book"
+                                            iconCls : "fa fa-book fa-color-blue"
                                             //icon : "resources/icons/niaobu.png"
 
                                         }]
@@ -166,21 +166,21 @@ Ext.define('AffiliatedHospital.view.Main', {
                                             iconAlign : 'top',
                                             itemId:'hospitalinfo',
                                             //icon : "resources/icons/muru.png",
-                                            iconCls : "fa fa-car"
+                                            iconCls : "fa fa-car fa-color-blue"
                                         }, {
                                             xtype : 'button',
                                             text : '医院动态',
                                             iconAlign : 'top',
                                             itemId:'hospitalnews',
                                             //icon : "resources/icons/shuijiao.png",
-                                            iconCls : "fa fa-hacker-news"
+                                            iconCls : "fa fa-hacker-news fa-color-blue"
                                         }, {
                                             xtype : 'button',
                                             text : '专家介绍',
                                             iconAlign : 'top',
                                             itemId:'expertinfo',
                                             //icon : "resources/icons/about.png",
-                                            iconCls : "fa fa-user"
+                                            iconCls : "fa fa-user fa-color-blue"
 
                                         }]
                                     }]

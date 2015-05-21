@@ -433,3 +433,9 @@ body.x-desktop {
 .x-tab .x-button-icon.fa::before, .x-button .x-button-icon.fa::before{
 	font-family:FontAwesome;
 }
+
+.fa-color-blue{
+	color: #1572B3;
+}
+/*
+#1572B3*/
