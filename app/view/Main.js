@@ -22,9 +22,43 @@ Ext.define('AffiliatedHospital.view.Main', {
         },
         navigationBar : {
             docked : 'top',
+            minHeight: '75px',
+
+
+            //centered:true,
+
+
+
             items : [
 
+                /*{
 
+                    xtype: 'label',
+                    flex:3,
+
+                    html: '<div style="width:100%;font-size: small;font-weight: bold;vertical-align: middle;"><div><img style="float:left;padding-top: 1px;padding-right: 5px;"  width="75px" height="75px" src="resources/icons/title.jpg"></div><div>绍兴文理学院附属医院</div></div>'
+
+                },*/
+
+                {
+                    docked: 'top',
+                    xtype: 'titlebar',
+                    padding:0,
+                    //height:20,
+                    //minHeight: '1em',
+                    centered:true,
+                    layout : 'fit',
+                    items: [
+                        {
+                            xtype: 'label',
+                            //centered:true,
+
+                            align: 'center',
+                            html: '<div style="width:100%;font-size: small;font-weight: bold;vertical-align: middle;"><div><img style="float:left;padding-top: 1px;padding-right: 5px;"  width="75px" height="75px" src="resources/icons/title.jpg"></div></div>'
+
+                        }
+                    ]
+                },
 
                 {
                     xtype:'mainmenu',
@@ -44,14 +78,19 @@ Ext.define('AffiliatedHospital.view.Main', {
                //xtype:'panel',
                 //xtype:'tabpanel',
                 //tabBarPosition: 'bottom',
-                title:'绍兴文理学院附属医院',
+                //title:'<img style="float:left;padding-top: 5px;"  width="30px" height="30px" src="resources/icons/title.jpg">绍兴文理学院附属医院',
                 //activeItem:0,
                 //fullscreen : true,
+                 title:'<div >绍兴文理学院附属医院</div>',
+
+
                 layout : 'fit',
                 xtype: 'container',
                 //layout: 'fit',
 
                 items: [
+
+
 
                     {
                         title: '首页',

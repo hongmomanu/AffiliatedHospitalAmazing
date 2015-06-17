@@ -138,13 +138,19 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
     soapTest:function(){
 
 
-        var url=Globle_Variable.soapurl;
+        //var url=Globle_Variable.soapurl;
+        var url=Globle_Variable.soapurl2;
         var fields=[
-            //{name:'mzhm',value:'A003300005409'}
+            //{name:'mzhm',value:'A003300005409'} A01941964  6214671450000899720
             /*{name:'pbrq',value:'2015-05-14'},
             {name:'ksdm',value:'01'},
             {name:'zblb',value:'1'}*/
-            {name:'ysdm',value:"478"}
+            //{name:'ysdm',value:"478"}
+            {name:'as_rev',value:CommonUtil.csape_all_xmlstr('<SstRequest> <userid></userid><passwd></passwd> <funid></funid>'
+            +'<signature></signature><RequestSet><kahao>A01941964</kahao><kpxlh>2</kpxlh>'
+            +'<klxbh></klxbh> <yyjgdm></yyjgdm> <zdbh></zdbh>'
+            +'<qsym>1</qsym> <myjls>10</myjls> <qsrq>20001220</qsrq> <jzrq></jzrq>'
+            +'</RequestSet> </SstRequest>')}
 
         ];
         var successFunc = function (response, action) {
@@ -164,7 +170,7 @@ Ext.define('AffiliatedHospital.controller.HealthWiki', {
         var failFunc = function (form, action) {
             Ext.Msg.alert("提示信息","发布失败");
         };
-        CommonUtil.soapCommon(url,'of_ysxx','n_yy',fields,successFunc,failFunc);
+        CommonUtil.soapCommon(url,'uf_trade','http://tempurl.org',fields,successFunc,failFunc);
 
     },
     onDrugSelect:function(list,index,node,record){
